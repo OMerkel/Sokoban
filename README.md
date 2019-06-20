@@ -20,3 +20,9 @@ Various level formats have been defined that are used in the community. These si
 More Sokoban resources, links and information...
 
 * http://www.sokobano.de
+
+## Contributors / Authors
+
+Oliver Merkel
+
+_All logos, brands and trademarks mentioned belong to their respective owners._
