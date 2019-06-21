@@ -52,7 +52,7 @@ __Ctrl+D__ exits the current game
 
 * https://en.wikipedia.org/wiki/Sokoban
 
-Due to its popularity there are free level collections available in the community. A huge and widely spread collection has been created by David W. Skinner named Microban and Sasquatch.
+Due to its popularity there are free level collections available in the community. A huge and widely spread level collection has been created by David W. Skinner named Microban and Sasquatch.
 
 * http://www.abelmartin.com/rj/sokobanJS/Skinner/David%20W.%20Skinner%20-%20Sokoban.htm
 
