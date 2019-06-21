@@ -1,9 +1,52 @@
 # Sokoban
+
 倉庫番 - Sokoban solitaire logic puzzle game
 
 The term _Sokoban_ means _warehouse keeper_. The player controls a warehouse keeper. He has to push boxes onto marked storage locations to solve each level.
 
 The original game of Sokoban was created back in the early 1980s Home Computer era by Hiroyuki Imabayashi then distributed by Thinking Rabbit, a Japanese software house.
+
+## Usage
+
+```
+$ cd dart
+$ dart sokoban.dart ../3rdParty/Levels/Microban.txt 3
+Found 155 levels in Microban.txt.
+Level 3:
+  ####
+###  ####
+#     $ #
+# #  #$ #
+# . .#@ #
+#########
+```
+
+What the symbols represent in the level files and on screen while playing the game:
+
+```Dart
+var symbol = {
+  'floor':            " ",
+  'wall':             "#",
+  'box':              "\$",
+  'sokoban':          "@",
+  'storage':          ".",
+  'boxOnStorage':     "*",
+  'sokobanOnStorage': "+"
+};
+```
+
+Use the following keys to control the Sokoban
+
+```Dart
+var key = {
+  'left':  'h',
+  'down':  'j',
+  'up':    'k',
+  'right': 'l'
+};
+```
+
+__Ctrl+D__ exits the current game
 
 ## Links and Third Party
 
