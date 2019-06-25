@@ -47,6 +47,40 @@ Hmi.levels = {
     "#*$ #",
     "#  @#",
     "#####",
+  ],[
+    "    #####",
+    "    #   #",
+    "    #$  #",
+    "  ###  $###",
+    "  #  $  $ #",
+    "### # ### #######",
+    "#   # ### ##  ..#",
+    "# $  $      @ ..#",
+    "##### #### #  ..#",
+    "    #      ######",
+    "    ########",
+  ],[
+    "#####",
+    "#   ##",
+    "#  $@#",
+    "##$ .#",
+    " #  .#",
+    " #####",
+  ],[
+    "*####        ####*",
+    "##  ##########  ##",
+    "#                #",
+    "#  ############  #",
+    "## ##  #  #   # ##",
+    " # #      #   # #",
+    " # #  ##$ #  ## #",
+    " # ## #  $#$ #  #",
+    " #  # #      ## #",
+    " # ## #  ##   # ##",
+    "##*#  #########  #",
+    "# .#             #",
+    "#@..#  #######  ##",
+    "*#######     ####*",
   ]],
 };
 
@@ -58,6 +92,10 @@ Hmi.prototype.resize = function () {
     availableHeight = window.innerHeight - offsetHeight;
   var size = Math.max( Math.min(availableWidth, availableHeight), 32 );
   this.paper.setSize( size, size );
+  var dim = this.getChallengeDimension();
+  var d = dim.x > dim.y ? dim.x : dim.y;
+  this.boardSize = 30*d;
+  this.paper.setViewBox(-10,-10,20+this.boardSize,20+this.boardSize, false );
   var boardMarginTop = (availableHeight - size) / 2;
   $('#board').css({ 'margin-top': boardMarginTop + 'px' });
   $('#selectmenu').css({ 'margin-top': boardMarginTop + 'px' });
@@ -112,13 +150,14 @@ Hmi.prototype.setupChallenge = function () {
       this.model[y].push(x<l.length ? l[x] : Hmi.levels.symbol.floor);
     }
   }
+  this.resize();
 };
 
 Hmi.prototype.controlDirection = function ( p, t, handler ) {
   var st = this.paper.set();
   st.push(
-    this.paper.circle(p.x, p.y,10).attr({fill: "r(0.75, 0.25)#fff-#000", "stroke-width": 2, stroke: "black"}),
-    this.paper.circle(p.x, p.y,42).attr({fill: "black", "stroke-width": 2, stroke: "black", opacity: 0.01, })
+    this.paper.circle(p.x, p.y,0.03*this.boardSize).attr({fill: "r(0.75, 0.25)#fff-#000", "stroke-width": this.boardSize*0.005, stroke: "black"}),
+    this.paper.circle(p.x, p.y,0.1*this.boardSize).attr({fill: "black", "stroke-width": this.boardSize*0.005, stroke: "black", opacity: 0.01, })
   );
   st.attr({ cursor: 'pointer', });
   st.click( handler );
@@ -129,9 +168,8 @@ Hmi.prototype.controlDirection = function ( p, t, handler ) {
 Hmi.prototype.initBoard = function () {
   this.paper = Raphael( 'board', 400, 400);
   this.paper.setViewBox(0, 0, 400, 400, false );
-  this.challenge = 1;
+  this.challenge = 0;
   this.setupChallenge();
-  this.updateChallenge();
 };
 
 Hmi.prototype.init = function () {
@@ -140,6 +178,7 @@ Hmi.prototype.init = function () {
   var $window = $(window);
   $window.resize( this.resize.bind( this ) );
   $window.resize();
+  this.updateChallenge();
   $('#next').on( 'click', this.next.bind(this) );
   $('#previous').on( 'click', this.previous.bind(this) );
   $('#random').on( 'click', this.random.bind(this) );
@@ -301,13 +340,14 @@ Hmi.prototype.updateChallenge = function() {
       }
     }
   }
-  this.paper.setViewBox(-10,-10,520,520, false );
-  controlTranslate = { x: 400, y: 400 };
-  this.paper.circle(0,0,100).attr({ fill: "#000", 'fill-opacity': 0.3, "stroke-width": 4, stroke: "black", opacity: 0.5 }).translate( controlTranslate.x, controlTranslate.y );
-  this.controlDirection({x:-60, y:  0}, controlTranslate, this.moveLeft.bind(this));
-  this.controlDirection({x: 60, y:  0}, controlTranslate, this.moveRight.bind(this));
-  this.controlDirection({x:  0, y:-60}, controlTranslate, this.moveUp.bind(this));
-  this.controlDirection({x:  0, y: 60}, controlTranslate, this.moveDown.bind(this));
+  var controlTranslate = { x: 0.8*this.boardSize, y: 0.8*this.boardSize };
+  this.paper.circle(0,0,0.2*this.boardSize).attr({ fill: "#000", 'fill-opacity': 0.3,
+    "stroke-width": this.boardSize*0.005, stroke: "black",
+    opacity: 0.5 }).translate( controlTranslate.x, controlTranslate.y );
+  this.controlDirection({x:-0.144*this.boardSize, y:  0}, controlTranslate, this.moveLeft.bind(this));
+  this.controlDirection({x: 0.144*this.boardSize, y:  0}, controlTranslate, this.moveRight.bind(this));
+  this.controlDirection({x:  0, y:-0.144*this.boardSize}, controlTranslate, this.moveUp.bind(this));
+  this.controlDirection({x:  0, y: 0.144*this.boardSize}, controlTranslate, this.moveDown.bind(this));
   this.setHeader();
 };
 
