@@ -179,6 +179,7 @@ Hmi.prototype.init = function () {
   $window.resize( this.resize.bind( this ) );
   $window.resize();
   this.updateChallenge();
+  $('#restart').on( 'click', this.startChallenge.bind(this) );
   $('#next').on( 'click', this.next.bind(this) );
   $('#previous').on( 'click', this.previous.bind(this) );
   $('#random').on( 'click', this.random.bind(this) );
@@ -186,25 +187,25 @@ Hmi.prototype.init = function () {
   $('#customOkOptions').on( 'click', this.updateChallenge.bind(this) );
 };
 
-Hmi.prototype.next = function() {
-  this.challenge = (this.challenge + 1) % Hmi.levels.setup.length;
+Hmi.prototype.startChallenge = function() {
   this.setupChallenge();
   this.updateChallenge();
   $('#left-panel').panel('close');
+};
+
+Hmi.prototype.next = function() {
+  this.challenge = (this.challenge + 1) % Hmi.levels.setup.length;
+  this.startChallenge();
 };
 
 Hmi.prototype.previous = function() {
   this.challenge = (this.challenge - 1 + Hmi.levels.setup.length ) % Hmi.levels.setup.length;
-  this.setupChallenge();
-  this.updateChallenge();
-  $('#left-panel').panel('close');
+  this.startChallenge();
 };
 
 Hmi.prototype.random = function() {
   this.challenge = Math.floor(Math.random() * Hmi.levels.setup.length );
-  this.setupChallenge();
-  this.updateChallenge();
-  $('#left-panel').panel('close');
+  this.startChallenge();
 };
 
 Hmi.prototype.isPos = function (pos, sym ) {
@@ -310,33 +311,40 @@ Hmi.prototype.moveDown = function () {
   this.updateChallenge();
 };
 
+Hmi.prototype.drawBox = function( x, y, attr ) {
+  this.paper.rect(30*x,30*y,29,29,5).attr(attr);
+  this.paper.rect(30*x+3,30*y+3,23,23,3).attr(attr);
+  this.paper.path('M ' + (30*x) + ',' + (30*y) + ' m 5,2 22,22 -3,3 -22,-22 z').attr(attr);
+  this.paper.path('M ' + (30*x) + ',' + (30*y) + ' m 27,5 -22,22 -3,-3 22,-22 z').attr(attr);
+};
+
 Hmi.prototype.updateChallenge = function() {
   this.paper.clear();
   this.paper.path( 'm-1000,-1000 4000,0 0,4000 -4000,0 z').attr({
-    stroke: '#444', 'stroke-width': 0.2, 'stroke-linecap': 'round', fill: '#555'
+    stroke: '#444', 'stroke-width': 0.2, 'stroke-linecap': 'round', fill: 'darkslategrey'
   });
   var dim = this.getChallengeDimension();
   for (var y=0; y<dim.y; ++y) {
     for (var x=0; x<dim.x; ++x) {
       var pos = { x: x, y: y };
       if (this.isPos(pos, 'wall')) {
-        this.paper.rect(30*x,30*y,29,29,1).attr({ fill: "#088", stroke: 'orange' });
+        this.paper.rect(30*x,30*y,29,29,1).attr({ fill: 'maroon', stroke: 'black' });
       }
       else if (this.isPos(pos, 'storage')) {
-        this.paper.rect(30*x,30*y,29,29,5).attr({ fill: "grey", stroke: 'orange' });
+        this.paper.rect(30*x,30*y,29,29,5).attr({ fill: 'grey', stroke: 'orange' });
       }
       else if (this.isPos(pos, 'sokoban')) {
-        this.paper.circle(30*x+15,30*y+15,15).attr({ fill: '#444', stroke: "black" });
+        this.paper.circle(30*x+15,30*y+15,15).attr({ fill: '#444', stroke: 'black' });
       }
       else if (this.isPos(pos, 'sokobanOnStorage')) {
-        this.paper.rect(30*x,30*y,29,29,5).attr({ fill: "grey", stroke: 'orange' });
-        this.paper.circle(30*x+15,30*y+15,15).attr({ fill: '#444', stroke: "black" });
+        this.paper.rect(30*x,30*y,29,29,5).attr({ fill: 'grey', stroke: 'orange' });
+        this.paper.circle(30*x+15,30*y+15,15).attr({ fill: '#444', stroke: 'black' });
       }
       else if (this.isPos(pos, 'box')) {
-        this.paper.rect(30*x,30*y,29,29,5).attr({ fill: 'brown', stroke: "black" });
+        this.drawBox( x, y, { fill: 'peru', stroke: 'black' } );
       }
       else if (this.isPos(pos, 'boxOnStorage')) {
-        this.paper.rect(30*x,30*y,29,29,5).attr({ fill: 'red', stroke: "black" });
+        this.drawBox( x, y, { fill: 'brown', stroke: 'black' } );
       }
     }
   }
