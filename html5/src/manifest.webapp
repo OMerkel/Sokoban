@@ -1,0 +1,22 @@
+{
+  "version": "0.1",
+  "name": "Sokoban",
+  "description": "Sokoban solitaire puzzle",
+  "launch_path": "/index.html",
+  "icons": {
+    "16": "/img/icons/sokoban16.png",
+    "32": "/img/icons/sokoban32.png",
+    "48": "/img/icons/sokoban48.png",
+    "60": "/img/icons/sokoban60.png",
+    "64": "/img/icons/sokoban64.png",
+    "90": "/img/icons/sokoban90.png",
+    "120": "/img/icons/sokoban120.png",
+    "128": "/img/icons/sokoban128.png",
+    "256": "/img/icons/sokoban256.png"
+  },
+  "developer": {
+    "name": "Oliver Merkel",
+    "url": "https://github.com/OMerkel/Sokoban"
+  },
+  "installs_allowed_from": ["*"]
+}

@@ -19,71 +19,6 @@
  *
  */
 
-Hmi.levels = {
-  symbol : {
-    floor:            " ",
-    wall:             "#",
-    box:              "$",
-    sokoban:          "@",
-    storage:          ".",
-    boxOnStorage:     "*",
-    sokobanOnStorage: "+",
-  },
-  setup : [[
-    "#########",
-    "#. $@$ .#",
-    "#########",
-  ],[
-    "#######",
-    "#.@ # #",
-    "#$* $ #",
-    "#   $ #",
-    "# ..  #",
-    "#  *  #",
-    "#######",
-  ],[
-    "###",
-    "#.###",
-    "#*$ #",
-    "#  @#",
-    "#####",
-  ],[
-    "    #####",
-    "    #   #",
-    "    #$  #",
-    "  ###  $###",
-    "  #  $  $ #",
-    "### # ### #######",
-    "#   # ### ##  ..#",
-    "# $  $      @ ..#",
-    "##### #### #  ..#",
-    "    #      ######",
-    "    ########",
-  ],[
-    "#####",
-    "#   ##",
-    "#  $@#",
-    "##$ .#",
-    " #  .#",
-    " #####",
-  ],[
-    "*####        ####*",
-    "##  ##########  ##",
-    "#                #",
-    "#  ############  #",
-    "## ##  #  #   # ##",
-    " # #      #   # #",
-    " # #  ##$ #  ## #",
-    " # ## #  $#$ #  #",
-    " #  # #      ## #",
-    " # ## #  ##   # ##",
-    "##*#  #########  #",
-    "# .#             #",
-    "#@..#  #######  ##",
-    "*#######     ####*",
-  ]],
-};
-
 function Hmi() {}
 
 Hmi.prototype.resize = function () {
@@ -130,27 +65,30 @@ Hmi.prototype.resize = function () {
 };
 
 Hmi.prototype.getChallengeDimension = function () {
-  var setup = Hmi.levels.setup[this.challenge];
+  var plan = levels.setup[this.challenge].plan;
   var b = 0;
-  for (var a=0; a<setup.length; ++a) {
-    var c = setup[a].length;
+  for (var a=0; a<plan.length; ++a) {
+    var c = plan[a].length;
     b = c > b ? c : b;
   }
-  return { x: b, y: setup.length };
+  return { x: b, y: plan.length };
 };
 
 Hmi.prototype.setupChallenge = function () {
-  var setup = Hmi.levels.setup[this.challenge];
+  var plan = levels.setup[this.challenge].plan;
   var dim = this.getChallengeDimension();
   this.model = [];
   for (var y=0; y<dim.y; ++y) {
     this.model.push( [] );
-    var l = setup[y];
+    var l = plan[y];
     for (var x=0; x<dim.x; ++x) {
-      this.model[y].push(x<l.length ? l[x] : Hmi.levels.symbol.floor);
+      this.model[y].push(x<l.length ? l[x] : levels.symbol.floor);
     }
   }
   this.resize();
+  this.moves = 0;
+  this.pushes = 0;
+  this.completed = false;
 };
 
 Hmi.prototype.controlDirection = function ( p, t, handler ) {
@@ -194,22 +132,22 @@ Hmi.prototype.startChallenge = function() {
 };
 
 Hmi.prototype.next = function() {
-  this.challenge = (this.challenge + 1) % Hmi.levels.setup.length;
+  this.challenge = (this.challenge + 1) % levels.setup.length;
   this.startChallenge();
 };
 
 Hmi.prototype.previous = function() {
-  this.challenge = (this.challenge - 1 + Hmi.levels.setup.length ) % Hmi.levels.setup.length;
+  this.challenge = (this.challenge - 1 + levels.setup.length ) % levels.setup.length;
   this.startChallenge();
 };
 
 Hmi.prototype.random = function() {
-  this.challenge = Math.floor(Math.random() * Hmi.levels.setup.length );
+  this.challenge = Math.floor(Math.random() * levels.setup.length );
   this.startChallenge();
 };
 
 Hmi.prototype.isPos = function (pos, sym ) {
-  return this.model[pos.y][pos.x] == Hmi.levels.symbol[sym];
+  return this.model[pos.y][pos.x] == levels.symbol[sym];
 };
 
 Hmi.prototype.isPosEither = function ( pos, sym1, sym2 ) {
@@ -233,18 +171,32 @@ Hmi.prototype.getSokoban = function () {
 Hmi.prototype.removeSokoban = function () {
   var sokoban = this.getSokoban();
   this.model[sokoban.y][sokoban.x] = this.isPos(sokoban, 'sokoban') ?
-    Hmi.levels.symbol.floor:Hmi.levels.symbol.storage;
+    levels.symbol.floor:levels.symbol.storage;
 };
 
 Hmi.prototype.setSokoban = function ( pos ) {
   this.removeSokoban();
   this.model[pos.y][pos.x] = this.isPosEither(pos, 'storage', 'boxOnStorage') ?
-    Hmi.levels.symbol.sokobanOnStorage:Hmi.levels.symbol.sokoban;
+    levels.symbol.sokobanOnStorage:levels.symbol.sokoban;
+};
+
+Hmi.prototype.isCompleted = function () {
+  var result = true;
+  var dim = this.getChallengeDimension();
+  for (var y=0; y<dim.y && result; ++y) {
+    for (var x=0; x<dim.x && result; ++x) {
+      var pos = { x: x, y: y };
+      if (this.isPosEither( pos, 'storage', 'box' )) {
+        result = false;
+      }
+    }
+  }
+  return result;
 };
 
 Hmi.prototype.setBox = function( pos ) {
   this.model[pos.y][pos.x] = this.isPos(pos, 'floor') ?
-    Hmi.levels.symbol.box:Hmi.levels.symbol.boxOnStorage;
+    levels.symbol.box:levels.symbol.boxOnStorage;
 };
 
 Hmi.prototype.leftOf = function ( pos ) {
@@ -267,10 +219,13 @@ Hmi.prototype.moveLeft = function () {
   var target = this.leftOf(this.getSokoban());
   if (this.isPosEither(target, 'floor', 'storage')) {
     this.setSokoban(target);
+    ++this.moves;
   } else if (this.isPosEither(target, 'box', 'boxOnStorage') &&
     this.isPosEither(this.leftOf(target), 'floor', 'storage')) {
     this.setSokoban(target);
     this.setBox(this.leftOf(target));
+    ++this.moves;
+    ++this.pushes;
   }
   this.updateChallenge();
 };
@@ -279,10 +234,13 @@ Hmi.prototype.moveRight = function () {
   var target = this.rightOf(this.getSokoban());
   if (this.isPosEither(target, 'floor', 'storage')) {
     this.setSokoban(target);
+    ++this.moves;
   } else if (this.isPosEither(target, 'box', 'boxOnStorage') &&
     this.isPosEither(this.rightOf(target), 'floor', 'storage')) {
     this.setSokoban(target);
     this.setBox(this.rightOf(target));
+    ++this.moves;
+    ++this.pushes;
   }
   this.updateChallenge();
 };
@@ -291,10 +249,13 @@ Hmi.prototype.moveUp = function () {
   var target = this.above(this.getSokoban());
   if (this.isPosEither(target, 'floor', 'storage')) {
     this.setSokoban(target);
+    ++this.moves;
   } else if (this.isPosEither(target, 'box', 'boxOnStorage') &&
     this.isPosEither(this.above(target), 'floor', 'storage')) {
     this.setSokoban(target);
     this.setBox(this.above(target));
+    ++this.moves;
+    ++this.pushes;
   }
   this.updateChallenge();
 };
@@ -303,10 +264,13 @@ Hmi.prototype.moveDown = function () {
   var target = this.below(this.getSokoban());
   if (this.isPosEither(target, 'floor', 'storage')) {
     this.setSokoban(target);
+    ++this.moves;
   } else if (this.isPosEither(target, 'box', 'boxOnStorage') &&
     this.isPosEither(this.below(target), 'floor', 'storage')) {
     this.setSokoban(target);
     this.setBox(this.below(target));
+    ++this.moves;
+    ++this.pushes;
   }
   this.updateChallenge();
 };
@@ -317,6 +281,10 @@ Hmi.prototype.drawBox = function( x, y, attr ) {
   this.paper.path('M ' + (30*x) + ',' + (30*y) + ' m 5,2 22,22 -3,3 -22,-22 z').attr(attr);
   this.paper.path('M ' + (30*x) + ',' + (30*y) + ' m 27,5 -22,22 -3,-3 22,-22 z').attr(attr);
 };
+
+Hmi.prototype.drawSokoban = function( x, y ) {
+  this.paper.circle(30*x+15,30*y+15,15).attr({ fill: 'red', stroke: 'black' });
+}
 
 Hmi.prototype.updateChallenge = function() {
   this.paper.clear();
@@ -334,11 +302,11 @@ Hmi.prototype.updateChallenge = function() {
         this.paper.rect(30*x,30*y,29,29,5).attr({ fill: 'grey', stroke: 'orange' });
       }
       else if (this.isPos(pos, 'sokoban')) {
-        this.paper.circle(30*x+15,30*y+15,15).attr({ fill: '#444', stroke: 'black' });
+        this.drawSokoban( x, y );
       }
       else if (this.isPos(pos, 'sokobanOnStorage')) {
         this.paper.rect(30*x,30*y,29,29,5).attr({ fill: 'grey', stroke: 'orange' });
-        this.paper.circle(30*x+15,30*y+15,15).attr({ fill: '#444', stroke: 'black' });
+        this.drawSokoban( x, y );
       }
       else if (this.isPos(pos, 'box')) {
         this.drawBox( x, y, { fill: 'peru', stroke: 'black' } );
@@ -352,17 +320,25 @@ Hmi.prototype.updateChallenge = function() {
   this.paper.circle(0,0,0.2*this.boardSize).attr({ fill: "#000", 'fill-opacity': 0.3,
     "stroke-width": this.boardSize*0.005, stroke: "black",
     opacity: 0.5 }).translate( controlTranslate.x, controlTranslate.y );
-  this.controlDirection({x:-0.144*this.boardSize, y:  0}, controlTranslate, this.moveLeft.bind(this));
-  this.controlDirection({x: 0.144*this.boardSize, y:  0}, controlTranslate, this.moveRight.bind(this));
-  this.controlDirection({x:  0, y:-0.144*this.boardSize}, controlTranslate, this.moveUp.bind(this));
-  this.controlDirection({x:  0, y: 0.144*this.boardSize}, controlTranslate, this.moveDown.bind(this));
+  this.controlDirection({x:-0.144*this.boardSize, y: 0}, controlTranslate, this.moveLeft.bind(this));
+  this.controlDirection({x: 0.144*this.boardSize, y: 0}, controlTranslate, this.moveRight.bind(this));
+  this.controlDirection({x: 0, y:-0.144*this.boardSize}, controlTranslate, this.moveUp.bind(this));
+  this.controlDirection({x: 0, y: 0.144*this.boardSize}, controlTranslate, this.moveDown.bind(this));
+  this.completed = this.completed ? true : this.isCompleted();
+  var info = levels.setup[this.challenge].hasOwnProperty('info') &&
+    $('#fullinfo').is(':checked') ? (levels.setup[this.challenge].info + '\n'):'';
+  this.paper.text(0,7, info + (this.completed ? 'Level completed! ':'') ).attr({
+    'text-anchor': 'start',
+    'font-size' : 10,
+    fill: 'lightgray',
+  });
   this.setHeader();
 };
 
 Hmi.prototype.setHeader = function() {
   $('#myheader').html(
-    "Sokoban : " +
-    this.challenge
+    "Sokoban : l" +
+    this.challenge + ' : m' + this.moves + ' : p' + this.pushes
   );
 }
 
