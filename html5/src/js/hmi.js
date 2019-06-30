@@ -89,6 +89,7 @@ Hmi.prototype.setupChallenge = function () {
   this.moves = 0;
   this.pushes = 0;
   this.completed = false;
+  this.sokoban = { orientation: 2 };
 };
 
 Hmi.prototype.controlDirection = function ( p, t, handler ) {
@@ -227,6 +228,7 @@ Hmi.prototype.moveLeft = function () {
     ++this.moves;
     ++this.pushes;
   }
+  this.sokoban.orientation = 1;
   this.updateChallenge();
 };
 
@@ -242,6 +244,7 @@ Hmi.prototype.moveRight = function () {
     ++this.moves;
     ++this.pushes;
   }
+  this.sokoban.orientation = 3;
   this.updateChallenge();
 };
 
@@ -257,6 +260,7 @@ Hmi.prototype.moveUp = function () {
     ++this.moves;
     ++this.pushes;
   }
+  this.sokoban.orientation = 2;
   this.updateChallenge();
 };
 
@@ -272,6 +276,7 @@ Hmi.prototype.moveDown = function () {
     ++this.moves;
     ++this.pushes;
   }
+  this.sokoban.orientation = 0;
   this.updateChallenge();
 };
 
@@ -283,7 +288,21 @@ Hmi.prototype.drawBox = function( x, y, attr ) {
 };
 
 Hmi.prototype.drawSokoban = function( x, y ) {
-  this.paper.circle(30*x+15,30*y+15,15).attr({ fill: 'red', stroke: 'black' });
+  // this.paper.circle(30*x+15,30*y+15,15).attr({ fill: 'red', stroke: 'black' });
+
+  var shoe = this.paper.path('M -5,-11 m -3,0 c 0,-4 7,-4 7,0').attr({ fill:'black',stroke:'black','stroke-width':0.6 });
+  var leg1 = this.paper.rect( -8, -11, 7, 10 ).attr({ fill:'#aaa',stroke:'black','stroke-width':0.6 });
+  var leg2 = this.paper.path('M 4,10 m -3,-7 0,7 c 0,4 7,4 7,0 l 0,-7').attr({ fill:'#aaa',stroke:'black','stroke-width':0.6 });
+  var hand1 = this.paper.circle(-7,9,3).attr({ fill:'#fb8',stroke:'#f95','stroke-width':0.6 });
+  var hand2 = this.paper.circle(7,-10,3).attr({ fill:'#fb8',stroke:'#f95','stroke-width':0.6 });
+  var torso = this.paper.path('m -4,1 0,4 c 0,4 -6,4 -6,0 l 0,-4 c 0,-10 11,-10 14,-8 c 0,-4 6,-4 6,0 l 0,7 c 0,4 -6,4 -6,0').attr({ fill:'#444',stroke:'black','stroke-width':0.6 });
+  var capshield = this.paper.path('m -6,0 c 0,12 12,12 12,0').attr({ fill:'red',stroke:'black','stroke-width':0.6 });
+  var cap = this.paper.circle(0,0,6).attr({ fill:'red',stroke:'black','stroke-width':0.6 });
+  var sokoban = this.paper.set();
+  sokoban.push( shoe, leg1, leg2, hand1, hand2, torso, capshield, cap );
+  sokoban.translate( 30*x+15,30*y+15 );
+  sokoban.rotate( 90*this.sokoban.orientation, 0, 0 );
+  sokoban.scale(((x+y)%2)*2-1,1,0,0);
 }
 
 Hmi.prototype.updateChallenge = function() {
