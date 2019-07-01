@@ -95,9 +95,9 @@ Hmi.prototype.setupChallenge = function () {
 Hmi.prototype.controlDirection = function ( p, t, orientation, handler ) {
   var st = this.paper.set();
   st.push(
-    this.paper.path('m ' + (0.06*this.boardSize) + ',0 ' + (-0.12*this.boardSize) + ',0 ' + 0.06*this.boardSize + ',' + (0.06*this.boardSize) + ' z').translate(p.x,p.y).rotate(90*orientation,t.x,t.y).attr({fill: "black", "stroke-width": this.boardSize*0.005, stroke: "black", opacity: 0.4 }),
+    this.paper.path('m ' + (0.04*this.boardSize) + ',0 ' + (-0.08*this.boardSize) + ',0 ' + 0.04*this.boardSize + ',' + (0.04*this.boardSize) + ' z').translate(p.x,p.y).rotate(90*orientation,t.x,t.y).attr({fill: "black", "stroke-width": this.boardSize*0.03, 'stroke-linejoin': "round", stroke: "black", opacity: 0.4 }),
     // this.paper.circle(p.x, p.y,0.03*this.boardSize).attr({fill: "black", "stroke-width": this.boardSize*0.005, stroke: "black", opacity: 0.4 }),
-    this.paper.circle(p.x, p.y,0.08*this.boardSize).attr({fill: "black", "stroke-width": this.boardSize*0.005, stroke: "black", opacity: 0.01, })
+    this.paper.circle(p.x, p.y,0.1*this.boardSize).attr({fill: "black", "stroke-width": this.boardSize*0.005, stroke: "black", opacity: 0.01, })
   );
   st.attr({ cursor: 'pointer', });
   st.click( handler );
@@ -355,10 +355,10 @@ Hmi.prototype.updateChallenge = function() {
   this.paper.circle(0,0,0.2*this.boardSize).attr({ fill: "#000", 'fill-opacity': 0.3,
     "stroke-width": this.boardSize*0.005, stroke: "black",
     opacity: 0.5 }).translate( controlTranslate.x, controlTranslate.y );
-  this.controlDirection({x:-0.114*this.boardSize, y: 0}, controlTranslate, 1, this.moveLeft.bind(this));
-  this.controlDirection({x: 0.114*this.boardSize, y: 0}, controlTranslate, 3, this.moveRight.bind(this));
-  this.controlDirection({x: 0, y:-0.114*this.boardSize}, controlTranslate, 2, this.moveUp.bind(this));
-  this.controlDirection({x: 0, y: 0.114*this.boardSize}, controlTranslate, 0, this.moveDown.bind(this));
+  this.controlDirection({x:-0.134*this.boardSize, y: 0}, controlTranslate, 1, this.moveLeft.bind(this));
+  this.controlDirection({x: 0.134*this.boardSize, y: 0}, controlTranslate, 3, this.moveRight.bind(this));
+  this.controlDirection({x: 0, y:-0.134*this.boardSize}, controlTranslate, 2, this.moveUp.bind(this));
+  this.controlDirection({x: 0, y: 0.134*this.boardSize}, controlTranslate, 0, this.moveDown.bind(this));
   this.completed = this.completed ? true : this.isCompleted();
   var info = levels.setup[this.challenge].hasOwnProperty('info') &&
     $('#fullinfo').is(':checked') ? (levels.setup[this.challenge].info + '\n'):'';
