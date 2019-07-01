@@ -89,7 +89,7 @@ Hmi.prototype.setupChallenge = function () {
   this.moves = 0;
   this.pushes = 0;
   this.completed = false;
-  this.sokoban = { orientation: 2 };
+  this.sokoban = { orientation: 2, pushing: false };
 };
 
 Hmi.prototype.controlDirection = function ( p, t, handler ) {
@@ -218,6 +218,7 @@ Hmi.prototype.below = function ( pos ) {
 
 Hmi.prototype.moveLeft = function () {
   var target = this.leftOf(this.getSokoban());
+  this.sokoban.pushing = false;
   if (this.isPosEither(target, 'floor', 'storage')) {
     this.setSokoban(target);
     ++this.moves;
@@ -227,6 +228,7 @@ Hmi.prototype.moveLeft = function () {
     this.setBox(this.leftOf(target));
     ++this.moves;
     ++this.pushes;
+    this.sokoban.pushing = true;
   }
   this.sokoban.orientation = 1;
   this.updateChallenge();
@@ -234,6 +236,7 @@ Hmi.prototype.moveLeft = function () {
 
 Hmi.prototype.moveRight = function () {
   var target = this.rightOf(this.getSokoban());
+  this.sokoban.pushing = false;
   if (this.isPosEither(target, 'floor', 'storage')) {
     this.setSokoban(target);
     ++this.moves;
@@ -243,6 +246,7 @@ Hmi.prototype.moveRight = function () {
     this.setBox(this.rightOf(target));
     ++this.moves;
     ++this.pushes;
+    this.sokoban.pushing = true;
   }
   this.sokoban.orientation = 3;
   this.updateChallenge();
@@ -250,6 +254,7 @@ Hmi.prototype.moveRight = function () {
 
 Hmi.prototype.moveUp = function () {
   var target = this.above(this.getSokoban());
+  this.sokoban.pushing = false;
   if (this.isPosEither(target, 'floor', 'storage')) {
     this.setSokoban(target);
     ++this.moves;
@@ -259,6 +264,7 @@ Hmi.prototype.moveUp = function () {
     this.setBox(this.above(target));
     ++this.moves;
     ++this.pushes;
+    this.sokoban.pushing = true;
   }
   this.sokoban.orientation = 2;
   this.updateChallenge();
@@ -266,6 +272,7 @@ Hmi.prototype.moveUp = function () {
 
 Hmi.prototype.moveDown = function () {
   var target = this.below(this.getSokoban());
+  this.sokoban.pushing = false;
   if (this.isPosEither(target, 'floor', 'storage')) {
     this.setSokoban(target);
     ++this.moves;
@@ -275,6 +282,7 @@ Hmi.prototype.moveDown = function () {
     this.setBox(this.below(target));
     ++this.moves;
     ++this.pushes;
+    this.sokoban.pushing = true;
   }
   this.sokoban.orientation = 0;
   this.updateChallenge();
@@ -293,9 +301,14 @@ Hmi.prototype.drawSokoban = function( x, y ) {
   var shoe = this.paper.path('M -5,-11 m -3,0 c 0,-4 7,-4 7,0').attr({ fill:'black',stroke:'black','stroke-width':0.6 });
   var leg1 = this.paper.rect( -8, -11, 7, 10 ).attr({ fill:'#aaa',stroke:'black','stroke-width':0.6 });
   var leg2 = this.paper.path('M 4,10 m -3,-7 0,7 c 0,4 7,4 7,0 l 0,-7').attr({ fill:'#aaa',stroke:'black','stroke-width':0.6 });
-  var hand1 = this.paper.circle(-7,9,3).attr({ fill:'#fb8',stroke:'#f95','stroke-width':0.6 });
-  var hand2 = this.paper.circle(7,-10,3).attr({ fill:'#fb8',stroke:'#f95','stroke-width':0.6 });
-  var torso = this.paper.path('m -4,1 0,4 c 0,4 -6,4 -6,0 l 0,-4 c 0,-10 11,-10 14,-8 c 0,-4 6,-4 6,0 l 0,7 c 0,4 -6,4 -6,0').attr({ fill:'#444',stroke:'black','stroke-width':0.6 });
+  var hand1 = (this.sokoban.pushing ? this.paper.path('M -7,15 m -3,0 c 0,-5 6,-5 6,0'):
+    this.paper.circle(-7,9,3)).attr({ fill:'#fb8',stroke:'#f95','stroke-width':0.6 });
+  var hand2 = (this.sokoban.pushing ? this.paper.path('M 7,15 m -3,0 c 0,-5 6,-5 6,0'):
+    this.paper.circle(7,-10,3)).attr({ fill:'#fb8',stroke:'#f95','stroke-width':0.6 });
+  var torso = (this.sokoban.pushing ? this.paper.path('m -4,0 0,10 c 0,3 -6,3 -6,0 ' +
+    'l 0,-10 c 0,-11 20,-11 20,0 l 0,10 c 0,3 -6,3 -6,0 l 0,-10'):
+    this.paper.path('m -4,1 0,4 c 0,4 -6,4 -6,0 l 0,-4 c 0,-10 11,-10 14,-8 ' +
+    'c 0,-4 6,-4 6,0 l 0,7 c 0,4 -6,4 -6,0')).attr({ fill:'#444',stroke:'black','stroke-width':0.6 });
   var capshield = this.paper.path('m -6,0 c 0,12 12,12 12,0').attr({ fill:'red',stroke:'black','stroke-width':0.6 });
   var cap = this.paper.circle(0,0,6).attr({ fill:'red',stroke:'black','stroke-width':0.6 });
   var sokoban = this.paper.set();
