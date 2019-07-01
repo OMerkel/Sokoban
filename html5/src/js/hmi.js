@@ -95,7 +95,7 @@ Hmi.prototype.setupChallenge = function () {
 Hmi.prototype.controlDirection = function ( p, t, handler ) {
   var st = this.paper.set();
   st.push(
-    this.paper.circle(p.x, p.y,0.03*this.boardSize).attr({fill: "r(0.75, 0.25)#fff-#000", "stroke-width": this.boardSize*0.005, stroke: "black"}),
+    this.paper.circle(p.x, p.y,0.03*this.boardSize).attr({fill: "black", "stroke-width": this.boardSize*0.005, stroke: "black", opacity: 0.4}),
     this.paper.circle(p.x, p.y,0.1*this.boardSize).attr({fill: "black", "stroke-width": this.boardSize*0.005, stroke: "black", opacity: 0.01, })
   );
   st.attr({ cursor: 'pointer', });
