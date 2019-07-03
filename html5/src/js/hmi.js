@@ -89,18 +89,18 @@ Hmi.prototype.setupChallenge = function () {
   this.moves = 0;
   this.pushes = 0;
   this.completed = false;
-  this.sokoban = { orientation: 2, pushing: false };
+  this.sokoban = { orientation: this.orientation.up, pushing: false };
 };
 
 Hmi.prototype.controlDirection = function ( p, t, orientation, handler ) {
   var st = this.paper.set();
   st.push(
-    this.paper.path('m ' + (0.04*this.boardSize) + ',0 ' + (-0.08*this.boardSize) + ',0 ' + 0.04*this.boardSize + ',' + (0.04*this.boardSize) + ' z').translate(p.x,p.y).rotate(90*orientation,t.x,t.y).attr({fill: "black", "stroke-width": this.boardSize*0.03, 'stroke-linejoin': "round", stroke: "black", opacity: 0.4 }),
+    this.paper.path('m ' + (0.04*this.boardSize) + ',0 ' + (-0.08*this.boardSize) + ',0 ' + 0.04*this.boardSize + ',' + (0.04*this.boardSize) + ' z').translate(p.x,p.y).rotate( orientation.angle,t.x,t.y ).attr({fill: "black", "stroke-width": this.boardSize*0.03, 'stroke-linejoin': "round", stroke: "black", opacity: 0.4 }),
     // this.paper.circle(p.x, p.y,0.03*this.boardSize).attr({fill: "black", "stroke-width": this.boardSize*0.005, stroke: "black", opacity: 0.4 }),
     this.paper.circle(p.x, p.y,0.1*this.boardSize).attr({fill: "black", "stroke-width": this.boardSize*0.005, stroke: "black", opacity: 0.01, })
   );
   st.attr({ cursor: 'pointer', });
-  st.click( handler );
+  st.click( handler.bind(this) );
   st.translate( t.x, t.y );
   return st;
 };
@@ -113,6 +113,12 @@ Hmi.prototype.initBoard = function () {
 };
 
 Hmi.prototype.init = function () {
+  this.orientation = {
+    down:  { angle:   0, move: 'd', push: 'D', neighbour: this.below },
+    left:  { angle:  90, move: 'l', push: 'L', neighbour: this.leftOf },
+    up:    { angle: 180, move: 'u', push: 'U', neighbour: this.above },
+    right: { angle: 270, move: 'r', push: 'R', neighbour: this.rightOf }
+  };
   this.initBoard();
   var $window = $(window);
   $window.resize( this.resize.bind( this ) );
@@ -216,77 +222,39 @@ Hmi.prototype.below = function ( pos ) {
   return { x: pos.x, y: pos.y+1 };
 };
 
-Hmi.prototype.moveLeft = function () {
-  var target = this.leftOf(this.getSokoban());
+Hmi.prototype.sokobanAction = function ( orientation ) {
+  var target = orientation.neighbour(this.getSokoban());
   this.sokoban.pushing = false;
   if (this.isPosEither(target, 'floor', 'storage')) {
     this.setSokoban(target);
     ++this.moves;
   } else if (this.isPosEither(target, 'box', 'boxOnStorage') &&
-    this.isPosEither(this.leftOf(target), 'floor', 'storage')) {
+    this.isPosEither(orientation.neighbour(target), 'floor', 'storage')) {
     this.setSokoban(target);
-    this.setBox(this.leftOf(target));
+    this.setBox(orientation.neighbour(target));
     ++this.moves;
     ++this.pushes;
     this.sokoban.pushing = true;
   }
-  this.sokoban.orientation = 1;
+  this.sokoban.orientation = orientation;
   this.updateChallenge();
-};
-
-Hmi.prototype.moveRight = function () {
-  var target = this.rightOf(this.getSokoban());
-  this.sokoban.pushing = false;
-  if (this.isPosEither(target, 'floor', 'storage')) {
-    this.setSokoban(target);
-    ++this.moves;
-  } else if (this.isPosEither(target, 'box', 'boxOnStorage') &&
-    this.isPosEither(this.rightOf(target), 'floor', 'storage')) {
-    this.setSokoban(target);
-    this.setBox(this.rightOf(target));
-    ++this.moves;
-    ++this.pushes;
-    this.sokoban.pushing = true;
-  }
-  this.sokoban.orientation = 3;
-  this.updateChallenge();
-};
-
-Hmi.prototype.moveUp = function () {
-  var target = this.above(this.getSokoban());
-  this.sokoban.pushing = false;
-  if (this.isPosEither(target, 'floor', 'storage')) {
-    this.setSokoban(target);
-    ++this.moves;
-  } else if (this.isPosEither(target, 'box', 'boxOnStorage') &&
-    this.isPosEither(this.above(target), 'floor', 'storage')) {
-    this.setSokoban(target);
-    this.setBox(this.above(target));
-    ++this.moves;
-    ++this.pushes;
-    this.sokoban.pushing = true;
-  }
-  this.sokoban.orientation = 2;
-  this.updateChallenge();
-};
+}
 
 Hmi.prototype.moveDown = function () {
-  var target = this.below(this.getSokoban());
-  this.sokoban.pushing = false;
-  if (this.isPosEither(target, 'floor', 'storage')) {
-    this.setSokoban(target);
-    ++this.moves;
-  } else if (this.isPosEither(target, 'box', 'boxOnStorage') &&
-    this.isPosEither(this.below(target), 'floor', 'storage')) {
-    this.setSokoban(target);
-    this.setBox(this.below(target));
-    ++this.moves;
-    ++this.pushes;
-    this.sokoban.pushing = true;
-  }
-  this.sokoban.orientation = 0;
-  this.updateChallenge();
-};
+  this.sokobanAction( this.orientation.down );
+}
+
+Hmi.prototype.moveLeft = function () {
+  this.sokobanAction( this.orientation.left );
+}
+
+Hmi.prototype.moveUp = function () {
+  this.sokobanAction( this.orientation.up );
+}
+
+Hmi.prototype.moveRight = function () {
+  this.sokobanAction( this.orientation.right );
+}
 
 Hmi.prototype.drawBox = function( x, y, attr ) {
   this.paper.rect(30*x,30*y,29,29,5).attr(attr);
@@ -313,7 +281,7 @@ Hmi.prototype.drawSokoban = function( x, y ) {
     var sokoban = this.paper.set();
     sokoban.push( shoe, leg1, leg2, hand1, hand2, torso, capshield, cap );
     sokoban.translate( 30*x+15,30*y+15 );
-    sokoban.rotate( 90*this.sokoban.orientation, 0, 0 );
+    sokoban.rotate( this.sokoban.orientation.angle, 0, 0 );
     sokoban.scale(((x+y)%2)*2-1,1,0,0);
   }
   else {
@@ -355,10 +323,10 @@ Hmi.prototype.updateChallenge = function() {
   this.paper.circle(0,0,0.2*this.boardSize).attr({ fill: "#000", 'fill-opacity': 0.3,
     "stroke-width": this.boardSize*0.005, stroke: "black",
     opacity: 0.5 }).translate( controlTranslate.x, controlTranslate.y );
-  this.controlDirection({x:-0.134*this.boardSize, y: 0}, controlTranslate, 1, this.moveLeft.bind(this));
-  this.controlDirection({x: 0.134*this.boardSize, y: 0}, controlTranslate, 3, this.moveRight.bind(this));
-  this.controlDirection({x: 0, y:-0.134*this.boardSize}, controlTranslate, 2, this.moveUp.bind(this));
-  this.controlDirection({x: 0, y: 0.134*this.boardSize}, controlTranslate, 0, this.moveDown.bind(this));
+  this.controlDirection({x:-0.134*this.boardSize, y: 0}, controlTranslate, this.orientation.left, this.moveLeft );
+  this.controlDirection({x: 0.134*this.boardSize, y: 0}, controlTranslate, this.orientation.right, this.moveRight );
+  this.controlDirection({x: 0, y:-0.134*this.boardSize}, controlTranslate, this.orientation.up, this.moveUp );
+  this.controlDirection({x: 0, y: 0.134*this.boardSize}, controlTranslate, this.orientation.down, this.moveDown );
   this.completed = this.completed ? true : this.isCompleted();
   var info = levels.setup[this.challenge].hasOwnProperty('info') &&
     $('#fullinfo').is(':checked') ? (levels.setup[this.challenge].info + '\n'):'';
