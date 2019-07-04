@@ -78,17 +78,21 @@ If not otherwise stated all graphics (independent of its format) are licensed un
     data-display='overlay' data-theme='b'>
     <ul data-role='listview' data-theme='b' data-divider-theme='d'
       data-icon='false' data-global-nav='demos' class='jqm-list'>
-      <li data-icon='back' data-rel='close'><a href='#'>Close Menu</a></li>
+      <li data-icon='carat-l' data-rel='close'><a href='#'>Close Menu</a></li>
       <li data-role='list-divider'>&nbsp;</li>
-      <li data-icon='star'><a id='restart'>Restart</a></li>
+      <li data-icon='refresh'><a id='restart'>Restart</a></li>
       <li data-role='list-divider'>&nbsp;</li>
-      <li data-icon='star'><a id='next'>Next</a></li>
-      <li data-icon='star'><a id='previous'>Previous</a></li>
-      <li data-icon='star'><a id='random'>Random</a></li>
+      <li data-icon='action'><a id='next'>Next</a></li>
+      <li data-icon='action'><a id='previous'>Previous</a></li>
+      <li data-icon='action'><a id='random'>Random</a></li>
       <li data-role='list-divider'>&nbsp;</li>
-      <li data-icon='action'><a href='#rules-page' data-rel='page'
+      <li data-icon='back'><a id='undo'>Undo</a></li>
+      <li data-role='list-divider'>&nbsp;</li>
+      <li data-icon='info'><a href='#rules-page' data-rel='page'
         data-transition='pop'>Rules&#8230;</a></li>
-      <li data-icon='grid'><a href='#options-menu' data-rel='page'
+      <li data-icon='grid'><a href='#statistics-menu' data-rel='page'
+        data-transition='slideup'>Statistics&#8230;</a></li>
+      <li data-icon='gear'><a href='#options-menu' data-rel='page'
         data-transition='slideup'>Options&#8230;</a></li>
       <li data-icon='info' ><a href='#about-page' data-rel='page'
         data-transition='pop'>About&#8230;</a></li>
@@ -153,6 +157,23 @@ If not otherwise stated all graphics (independent of its format) are licensed un
       </fieldset>
     </form>
     <a href='#' id='customOkOptions' data-role='button' data-icon='check'
+      data-rel='back' data-theme='c'>Ok</a>
+  </div><!-- /content -->
+</div><!-- /page -->
+
+<div data-role='page' data-theme='b' id='statistics-menu'>
+  <div data-role='header'>
+    <h1><small>Statistics</small></h1>
+    <a href='#' data-rel='back' id='customBackStatistics'
+      class='customBack ui-btn ui-icon-custom ui-btn-icon-left ui-btn-icon-notext ui-corner-all'>Close</a>
+  </div><!-- /header -->
+  <div data-role='content'>
+    <br />
+    <h3>Move History</h3>
+    <p id='history' style='word-wrap: break-word;'></p>
+    <p>#<span id='moves'></span> moves made and boxes were pushed #<span id='pushes'></span> times.</p>
+    <p id='completed'></p>
+    <a href='#' id='customOkStatistics' data-role='button' data-icon='check'
       data-rel='back' data-theme='c'>Ok</a>
   </div><!-- /content -->
 </div><!-- /page -->

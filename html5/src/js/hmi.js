@@ -46,22 +46,14 @@ Hmi.prototype.resize = function () {
     'width': size+'px', 'height': size+'px',
     'background-size': size+'px ' + size+'px',
   });
-  $('#customBackSelect').css({
+  var backAttributes = {
     'width': size+'px', 'height': size+'px',
     'background-size': size+'px ' + size+'px',
-  });
-  $('#customBackRules').css({
-    'width': size+'px', 'height': size+'px',
-    'background-size': size+'px ' + size+'px',
-  });
-  $('#customBackOptions').css({
-    'width': size+'px', 'height': size+'px',
-    'background-size': size+'px ' + size+'px',
-  });
-  $('#customBackAbout').css({
-    'width': size+'px', 'height': size+'px',
-    'background-size': size+'px ' + size+'px',
-  });
+  };
+  $('#customBackRules').css(backAttributes);
+  $('#customBackStatistics').css(backAttributes);
+  $('#customBackOptions').css(backAttributes);
+  $('#customBackAbout').css(backAttributes);
 };
 
 Hmi.prototype.getChallengeDimension = function () {
@@ -86,7 +78,7 @@ Hmi.prototype.setupChallenge = function () {
     }
   }
   this.resize();
-  this.moves = 0;
+  this.moves = '';
   this.pushes = 0;
   this.completed = false;
   this.sokoban = { orientation: this.orientation.up, pushing: false };
@@ -114,10 +106,10 @@ Hmi.prototype.initBoard = function () {
 
 Hmi.prototype.init = function () {
   this.orientation = {
-    down:  { angle:   0, move: 'd', push: 'D', neighbour: this.below },
-    left:  { angle:  90, move: 'l', push: 'L', neighbour: this.leftOf },
-    up:    { angle: 180, move: 'u', push: 'U', neighbour: this.above },
-    right: { angle: 270, move: 'r', push: 'R', neighbour: this.rightOf }
+    down:  { angle:   0, move: 'd', push: 'D', neighbour: this.below , counterdirection: this.above },
+    left:  { angle:  90, move: 'l', push: 'L', neighbour: this.leftOf, counterdirection: this.rightOf },
+    up:    { angle: 180, move: 'u', push: 'U', neighbour: this.above, counterdirection: this.below },
+    right: { angle: 270, move: 'r', push: 'R', neighbour: this.rightOf, counterdirection: this.leftOf }
   };
   this.initBoard();
   var $window = $(window);
@@ -128,6 +120,7 @@ Hmi.prototype.init = function () {
   $('#next').on( 'click', this.next.bind(this) );
   $('#previous').on( 'click', this.previous.bind(this) );
   $('#random').on( 'click', this.random.bind(this) );
+  $('#undo').on( 'click', this.undo.bind(this) );
   $('#customBackOptions').on( 'click', this.updateChallenge.bind(this) );
   $('#customOkOptions').on( 'click', this.updateChallenge.bind(this) );
 };
@@ -151,6 +144,40 @@ Hmi.prototype.previous = function() {
 Hmi.prototype.random = function() {
   this.challenge = Math.floor(Math.random() * levels.setup.length );
   this.startChallenge();
+};
+
+Hmi.prototype.undo = function() {
+  if (this.moves.length > 0) {
+    var m = this.moves[this.moves.length-1];
+    var d = Object.keys(this.orientation);
+    var last = {};
+    for (var a = 0; a<d.length; ++a) {
+      var o = this.orientation[d[a]];
+      if (o.move == m || o.push == m) {
+        last = {
+          orientation : o,
+          type : o.move == m ? 'move' : 'push',
+        }
+      }
+    }
+    this.moves = this.moves.substring(0, this.moves.length-1);
+    this.sokobanUndoAction(last);
+  }
+  this.updateChallenge();
+  $('#left-panel').panel('close');
+};
+
+Hmi.prototype.sokobanUndoAction = function ( last ) {
+  var origin = this.getSokoban();
+  var target = last.orientation.counterdirection(origin);
+  this.setSokoban(target);
+  this.sokoban.pushing = last.type == 'push';
+  if (this.sokoban.pushing) {
+    this.removeBox(last.orientation.neighbour(origin));
+    this.setBox(origin);
+    --this.pushes;
+  }
+  this.sokoban.orientation = last.orientation;
 };
 
 Hmi.prototype.isPos = function (pos, sym ) {
@@ -201,6 +228,11 @@ Hmi.prototype.isCompleted = function () {
   return result;
 };
 
+Hmi.prototype.removeBox = function( pos ) {
+  this.model[pos.y][pos.x] = this.isPos(pos, 'box') ?
+    levels.symbol.floor:levels.symbol.storage;
+};
+
 Hmi.prototype.setBox = function( pos ) {
   this.model[pos.y][pos.x] = this.isPos(pos, 'floor') ?
     levels.symbol.box:levels.symbol.boxOnStorage;
@@ -227,34 +259,34 @@ Hmi.prototype.sokobanAction = function ( orientation ) {
   this.sokoban.pushing = false;
   if (this.isPosEither(target, 'floor', 'storage')) {
     this.setSokoban(target);
-    ++this.moves;
+    this.moves += orientation.move;
   } else if (this.isPosEither(target, 'box', 'boxOnStorage') &&
     this.isPosEither(orientation.neighbour(target), 'floor', 'storage')) {
     this.setSokoban(target);
     this.setBox(orientation.neighbour(target));
-    ++this.moves;
+    this.moves += orientation.push;
     ++this.pushes;
     this.sokoban.pushing = true;
   }
   this.sokoban.orientation = orientation;
   this.updateChallenge();
-}
+};
 
 Hmi.prototype.moveDown = function () {
   this.sokobanAction( this.orientation.down );
-}
+};
 
 Hmi.prototype.moveLeft = function () {
   this.sokobanAction( this.orientation.left );
-}
+};
 
 Hmi.prototype.moveUp = function () {
   this.sokobanAction( this.orientation.up );
-}
+};
 
 Hmi.prototype.moveRight = function () {
   this.sokobanAction( this.orientation.right );
-}
+};
 
 Hmi.prototype.drawBox = function( x, y, attr ) {
   this.paper.rect(30*x,30*y,29,29,5).attr(attr);
@@ -287,7 +319,15 @@ Hmi.prototype.drawSokoban = function( x, y ) {
   else {
     this.paper.circle(30*x+15,30*y+15,15).attr({ fill: 'red', stroke: 'black' });
   }
-}
+};
+
+Hmi.prototype.updateStatistics = function() {
+  $('#history').html(this.moves.length > 0 ? this.moves : 'Warehouse keeper did not move yet.');
+  $('#moves').html(this.moves.length > 0 ? this.moves.length : 'No');
+  $('#pushes').html(this.pushes > 0 ? this.pushes : 'zero');
+  $('#completed').html(this.completed ? 'Congratulation! This level has been successfully completed.' +
+    ( this.isCompleted() ? '' : ' But it got messed up again.' ) : 'You are still solving this level.');
+};
 
 Hmi.prototype.updateChallenge = function() {
   this.paper.clear();
@@ -330,18 +370,21 @@ Hmi.prototype.updateChallenge = function() {
   this.completed = this.completed ? true : this.isCompleted();
   var info = levels.setup[this.challenge].hasOwnProperty('info') &&
     $('#fullinfo').is(':checked') ? (levels.setup[this.challenge].info + '\n'):'';
-  this.paper.text(0,7, info + (this.completed ? 'Level completed! ':'') ).attr({
+  var completed = this.completed ? ('Level has been completed!' +
+    ( this.isCompleted() ? '' : '\nBut it got messed up again.' )) : '';
+  this.paper.text(0,7, info + completed ).attr({
     'text-anchor': 'start',
     'font-size' : 10,
     fill: 'lightgray',
   });
   this.setHeader();
+  this.updateStatistics();
 };
 
 Hmi.prototype.setHeader = function() {
   $('#myheader').html(
     "Sokoban : l" +
-    this.challenge + ' : m' + this.moves + ' : p' + this.pushes
+    this.challenge + ' : m' + this.moves.length + ' : p' + this.pushes
   );
 }
 
