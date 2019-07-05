@@ -84,10 +84,10 @@ Hmi.prototype.setupChallenge = function () {
   this.sokoban = { orientation: this.orientation.up, pushing: false };
 };
 
-Hmi.prototype.controlDirection = function ( p, t, orientation, handler ) {
+Hmi.prototype.controlDirection = function ( p, t, orientation, color, handler ) {
   var st = this.paper.set();
   st.push(
-    this.paper.path('m ' + (0.04*this.boardSize) + ',0 ' + (-0.08*this.boardSize) + ',0 ' + 0.04*this.boardSize + ',' + (0.04*this.boardSize) + ' z').translate(p.x,p.y).rotate( orientation.angle,t.x,t.y ).attr({fill: "black", "stroke-width": this.boardSize*0.03, 'stroke-linejoin': "round", stroke: "black", opacity: 0.4 }),
+    this.paper.path('m ' + (0.04*this.boardSize) + ',0 ' + (-0.08*this.boardSize) + ',0 ' + 0.04*this.boardSize + ',' + (0.04*this.boardSize) + ' z').translate(p.x,p.y).rotate( orientation.angle,t.x,t.y ).attr({fill: color, "stroke-width": this.boardSize*0.03, 'stroke-linejoin': "round", stroke: color, opacity: 0.4 }),
     // this.paper.circle(p.x, p.y,0.03*this.boardSize).attr({fill: "black", "stroke-width": this.boardSize*0.005, stroke: "black", opacity: 0.4 }),
     this.paper.circle(p.x, p.y,0.1*this.boardSize).attr({fill: "black", "stroke-width": this.boardSize*0.005, stroke: "black", opacity: 0.01, })
   );
@@ -364,10 +364,21 @@ Hmi.prototype.updateChallenge = function() {
   this.paper.circle(0,0,0.2*this.boardSize).attr({ fill: "#000", 'fill-opacity': 0.3,
     "stroke-width": this.boardSize*0.005, stroke: "black",
     opacity: 0.5 }).translate( controlTranslate.x, controlTranslate.y );
-  this.controlDirection({x:-0.134*this.boardSize, y: 0}, controlTranslate, this.orientation.left, this.moveLeft );
-  this.controlDirection({x: 0.134*this.boardSize, y: 0}, controlTranslate, this.orientation.right, this.moveRight );
-  this.controlDirection({x: 0, y:-0.134*this.boardSize}, controlTranslate, this.orientation.up, this.moveUp );
-  this.controlDirection({x: 0, y: 0.134*this.boardSize}, controlTranslate, this.orientation.down, this.moveDown );
+  this.controlDirection({x:-0.134*this.boardSize, y: 0}, controlTranslate,
+    this.orientation.left, 'black', this.moveLeft );
+  this.controlDirection({x: 0.134*this.boardSize, y: 0}, controlTranslate,
+    this.orientation.right, 'black', this.moveRight );
+  this.controlDirection({x: 0, y:-0.134*this.boardSize}, controlTranslate,
+    this.orientation.up, 'black', this.moveUp );
+  this.controlDirection({x: 0, y: 0.134*this.boardSize}, controlTranslate,
+    this.orientation.down, 'black', this.moveDown );
+  if (this.moves.length == 0) {
+    controlTranslate = { x: 0.5*this.boardSize, y: 0.33*this.boardSize };
+    this.controlDirection({x:-0.4*this.boardSize, y: 0}, controlTranslate,
+      this.orientation.left, 'white', this.previous );
+    this.controlDirection({x: 0.4*this.boardSize, y: 0}, controlTranslate,
+      this.orientation.right, 'white', this.next );
+  }
   this.completed = this.completed ? true : this.isCompleted();
   var info = levels.setup[this.challenge].hasOwnProperty('info') &&
     $('#fullinfo').is(':checked') ? (levels.setup[this.challenge].info + '\n'):'';
