@@ -322,6 +322,7 @@ Hmi.prototype.drawSokoban = function( x, y ) {
 };
 
 Hmi.prototype.updateStatistics = function() {
+  $('#leveldata').html('Challenge #' + this.challenge + ': ' + levels.setup[this.challenge].info);
   $('#history').html(this.moves.length > 0 ? this.moves : 'Warehouse keeper did not move yet.');
   $('#moves').html(this.moves.length > 0 ? this.moves.length : 'No');
   $('#pushes').html(this.pushes > 0 ? this.pushes : 'zero');
