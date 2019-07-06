@@ -9476,11 +9476,6 @@ levels = {
     info: "by David W. Skinner, Sasquatch III 40",
   }, {
     plan: [
-    "'MS46 v2'",
-    ],
-    info: "by David W. Skinner, Sasquatch III 41",
-  }, {
-    plan: [
     "##############################",
     "#        .........           #",
     "# $      ###### ##         @ #",
@@ -9500,7 +9495,7 @@ levels = {
     "         #  ####  #",
     "         ####  ####",
     ],
-    info: "by David W. Skinner, Sasquatch III 42",
+    info: "by David W. Skinner, Sasquatch III 41 - 'MS46 v2'",
   }, {
     plan: [
     "#########################",
@@ -9521,7 +9516,7 @@ levels = {
     "#   #   #   #   #   #   #",
     "#########################",
     ],
-    info: "by David W. Skinner, Sasquatch III 43",
+    info: "by David W. Skinner, Sasquatch III 42",
   }, {
     plan: [
     "    ####",
@@ -9541,7 +9536,7 @@ levels = {
     "     #   ######",
     "     #####",
     ],
-    info: "by David W. Skinner, Sasquatch III 44",
+    info: "by David W. Skinner, Sasquatch III 43",
   }, {
     plan: [
     "      #####",
@@ -9562,7 +9557,7 @@ levels = {
     "     ## @ ##",
     "      #####",
     ],
-    info: "by David W. Skinner, Sasquatch III 45",
+    info: "by David W. Skinner, Sasquatch III 44",
   }, {
     plan: [
     "      #####",
@@ -9583,7 +9578,7 @@ levels = {
     "      # @ #",
     "      #####",
     ],
-    info: "by David W. Skinner, Sasquatch III 46",
+    info: "by David W. Skinner, Sasquatch III 45",
   }, {
     plan: [
     "           #####",
@@ -9602,7 +9597,7 @@ levels = {
     " ########### * ###########",
     "           #####",
     ],
-    info: "by David W. Skinner, Sasquatch III 47",
+    info: "by David W. Skinner, Sasquatch III 46",
   }, {
     plan: [
     "           #####",
@@ -9621,7 +9616,7 @@ levels = {
     " ########### * ###########",
     "           #####",
     ],
-    info: "by David W. Skinner, Sasquatch III 48 'Parallel Logic 2'",
+    info: "by David W. Skinner, Sasquatch III 47",
   }, {
     plan: [
     " #########################",
@@ -9642,7 +9637,7 @@ levels = {
     "         #  ###  #",
     "         #### ####",
     ],
-    info: "by David W. Skinner, Sasquatch III 49",
+    info: "by David W. Skinner, Sasquatch III 48 'Parallel Logic 2'",
   }, {
     plan: [
     "  #########################",
@@ -9662,6 +9657,29 @@ levels = {
     "###$$ $$ $$ $$.$$ $$ $$ $$###",
     "  #           #           #",
     "  #########################",
+    ],
+    info: "by David W. Skinner, Sasquatch III 49",
+  }, {
+  }, {
+    plan: [
+    " ####                   ####",
+    " #  #####################  #",
+    " #    ....... @ .......    #",
+    " #  # .###############. #  #",
+    "###  #.    #  #   #   .#  ###",
+    " #     #   $  #   $  #     #",
+    " #     ##$##  ##$##  #     #",
+    " ###   #  ##$##  #####   ###",
+    " #  #  #  $   $  $   #  #  #",
+    " #     #  #   #  #   #     #",
+    " #  #  #####$######$##  #  #",
+    " ##   ##   #  #   #  ##   ##",
+    " #######   $  #   $  #######",
+    "       ##$##  ##$##  #",
+    "###### #  #####  ##$## ######",
+    "#    # #  $   $  $   # #    #",
+    "###### #  #   #  #   # ######",
+    "       ###############",
     ],
     info: "by David W. Skinner, Sasquatch III 50",
   }, {
