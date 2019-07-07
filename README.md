@@ -6,9 +6,14 @@ The term _Sokoban_ means _warehouse keeper_. The player controls a warehouse kee
 
 The original game of Sokoban was created back in the early 1980s Home Computer era by Hiroyuki Imabayashi then distributed by Thinking Rabbit, a Japanese software house.
 
+## Usage of Browser Javascript Version
+
+Simply start a session of the [Sokoban game](https://omerkel.github.io/Sokoban/html5/src) in your browser window. 
+
 ## Usage of Dart Version
 
-You can find a version written in Dart programming language in this repository. This is a ASCII graphics version played on the command line console (STDIN/STDOUT). A Dart SDK is needed to run it ( https://dart.dev ).
+You can find a version written in Dart programming language in this repository. This is a ASCII graphics version played on the command line console (STDIN/STDOUT). A Dart SDK is ne
+eded to run it ( https://dart.dev ).
 
 ```
 $ cd dart
