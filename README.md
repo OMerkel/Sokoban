@@ -16,6 +16,8 @@ You can find a version written in Dart programming language in this repository. 
 eded to run it ( https://dart.dev ).
 
 ```
+$ dart --version
+Dart VM version: 2.4.0 (Unknown timestamp) on "linux_x64"
 $ cd dart
 $ dart sokoban.dart ../3rdParty/Levels/Microban.txt 3
 Found 155 levels in Microban.txt.
