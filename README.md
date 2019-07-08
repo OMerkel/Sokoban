@@ -1,4 +1,5 @@
-# Sokoban
+<img alt="Sokoban icon" width="64" src="html5/src/img/icons/sokoban64.png" /> Sokoban
+=============================================
 
 倉庫番 - Sokoban solitaire logic puzzle game
 
