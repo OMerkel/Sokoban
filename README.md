@@ -150,6 +150,70 @@ $ python sokoban_solver_1.py 4
 
 Time to wait or give up...
 
+__sokoban_solver_2.py__ avoids traversing already visited situations while searching for the solution.
+This is done by storing each level situation in a set named _visited_ in the python code.
+
+```
+$ python sokoban_solver_2.py 4
+  ######
+  #.   #
+### ##$###
+#@ $   . #
+#    ####*
+######
+rdrruLuurrrDullldddlluRdrUUdrrR
+0.09712076187133789 seconds
+$ python3 sokoban_solver_2.py 6
+#######
+#.@ # #
+#$* $ #
+#   $ #
+# ..  #
+#  *  #
+#######
+DDrdrruLruLLDllU
+3.3833835124969482 seconds
+python3 sokoban_solver_2.py 7
+ #####
+##   #
+#@$  #
+#. $##
+#.  #
+#####
+RurrdLulDlddrrULuurrdLulDDrdL
+0.0918741226196289 seconds
+```
+
+Still the Sokoban solver has limitations to find solutions for levels like the following one.
+
+```
+$ python sokoban_solver_2.py 8
+    #####
+    #   #
+    #$  #
+  ###  $###
+  #  $  $ #
+### # # # #*#####
+#   # ### ##  ..#
+# $  $      @ ..#
+##### #### #  ..#
+    #      *#####
+    ########
+```
+
+Again memory consumption is high. And it continous to search for solutions even if it is
+clear that a specific solution is already unsolveable. E.g. if a box gets pushed into
+a corner and can not be pushed out of the corner anymore. Like this:
+
+```
+    #####
+    #$  #
+    #   #
+...
+```
+
+To be continued...
+
 ## Links and Third Party
 
 * https://en.wikipedia.org/wiki/Sokoban
