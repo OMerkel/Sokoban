@@ -62,6 +62,94 @@ var key = {
 
 __Ctrl+D__ exits the current game
 
+## Solving Sokoban Levels
+
+```
+$ python --version
+Python 3.5.2
+$ cd python
+$ python sokoban_solver_1.py 0
+###
+#.#
+# #
+#$#
+#@#
+###
+UU
+0.000347137451171875 seconds
+```
+
+The selected level or challenge indexed by '0' on the command line is shown with following symbols.
+
+```python
+levels = {
+  'symbol' : {
+    'floor':            " ",
+    'wall':             "#",
+    'box':              "$",
+    'sokoban':          "@",
+    'storage':          ".",
+    'boxOnStorage':     "*",
+    'sokobanOnStorage': "+",
+  },
+...
+```
+
+The solution found is shown below this output of the challenge.
+
+```python
+  orientation = {
+    'down':  { 'move': 'd', 'push': 'D', 'dx':  0, 'dy':  1 },
+    'left':  { 'move': 'l', 'push': 'L', 'dx': -1, 'dy':  0 },
+    'up':    { 'move': 'u', 'push': 'U', 'dx':  0, 'dy': -1 },
+    'right': { 'move': 'r', 'push': 'R', 'dx':  1, 'dy':  0 }
+  }
+```
+
+The two uppercase 'UU' in the output indicate that two pushes have to be performed to solve the challenge.
+
+__sokoban_solver_1.py__ works for simple levels in very low time.
+
+Solving challenge 3 by UUluRR and 5 using the moves and pushes llDurrdL:
+
+```
+$ python sokoban_solver_1.py 3
+######
+#   .#
+#  ###
+##$#
+ #@#
+ ###
+UUluRR
+0.003311634063720703 seconds
+$ python sokoban_solver_1.py 5
+#####
+#  @#
+#*$ #
+#.###
+###
+llDurrdL
+0.016065359115600586 seconds
+```
+
+As soon as the warehousekeeper gets more liberties or freedom to move the time to solve the challenges
+increases enormously. This is since the _brute-force-attack_ to find the solution traverses situations
+over and over again even if the same situation has been _visited_ and thus has been analysed before.
+Most likely then the computer runs _out of memory_ or you get a _memory error_ or _couldn't allocate_
+more memory after a while.
+
+```
+$ python sokoban_solver_1.py 4
+  ######
+  #.   #
+### ##$###
+#@ $   . #
+#    ####*
+######
+```
+
+Time to wait or give up...
+
 ## Links and Third Party
 
 * https://en.wikipedia.org/wiki/Sokoban
