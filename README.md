@@ -132,7 +132,7 @@ llDurrdL
 0.016065359115600586 seconds
 ```
 
-As soon as the warehousekeeper gets more liberties or freedom to move the time to solve the challenges
+As soon as the warehouse keeper gets more liberties or freedom to move the time to solve the challenges
 increases enormously. This is since the _brute-force-attack_ to find the solution traverses situations
 over and over again even if the same situation has been _visited_ and thus has been analysed before.
 Most likely then the computer runs _out of memory_ or you get a _memory error_ or _couldn't allocate_
