@@ -213,6 +213,17 @@ a corner and can not be pushed out of the corner anymore. Like this:
 ```
 
 A box gets immovable as soon as it gets pushed into a corner of walls or even other boxes.
+Such corners look like this
+
+```
+
+   #$
+@$  $
+
+```
+
+If the Sokoban pushes the box twice right (RR) into the corner shape then none of the boxes
+are moveable any longer.
 
 ```
 ##########
@@ -223,9 +234,10 @@ A box gets immovable as soon as it gets pushed into a corner of walls or even ot
 ##########
 ```
 
-As an example the warehouse keeper can not move any box. The situation is unsovable.
-Meaning the strategy to optimize the search finding a solution is to avoid pushes of a
-box into such corners.
+As another example the warehouse keeper can not move any box in this situation.
+The situation is unsovable. Meaning the strategy to optimize the search finding a
+solution is to avoid pushes of a box into such corner shapes as long as the compacted
+shape is not part of the intended solution.
 
 Furthermore to reduce memory consumption of the remaining search tree instead of
 storing the whole level scenario it is sufficient to store a much shorter unique
@@ -245,8 +257,8 @@ value but strings the list is joined as a string:
             visited.add(sHash)    
 ```
 
-Although __sokoban_solver_3.py__ will allow to render a solution for a greater set of levels the
-runtime is still considered being high on nowadays machines.
+Although __sokoban_solver_3.py__ will allow to render a solution for a greater
+set of levels the runtime is still considered being high on nowadays machines.
 
 ```
 $ python sokoban_solver_3.py 8
