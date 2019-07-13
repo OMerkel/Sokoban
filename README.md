@@ -291,6 +291,8 @@ UUUUUUUruLLLLLLLLLLLLLulDDDDDDDD
 14102.903747797012 seconds
 ```
 
+There is still enough room for improvements...
+
 ## Links and Third Party
 
 * https://en.wikipedia.org/wiki/Sokoban
