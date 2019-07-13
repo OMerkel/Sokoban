@@ -245,8 +245,8 @@ value but strings the list is joined as a string:
             visited.add(sHash)    
 ```
 
-Although this will allow to render a solution for a greater set of levels the
-needed runtime might still be consider being high on nowadays machines.
+Although __sokoban_solver_3.py__ will allow to render a solution for a greater set of levels the
+needed runtime might still be considered being high on nowadays machines.
 
 ```
 $ python sokoban_solver_3.py 8
@@ -261,7 +261,9 @@ $ python sokoban_solver_3.py 8
 ##### #### #  ..#
     #      *#####
     ########
-llluuuLLUllDlldddrRRRRRRRRdrUllllllllllulldRRRRRRRRRRRuRRlDlllluuullulldDDuulldddrRRRRRRRRdRRlUlllluuullLulDDDuulldddrRRRRRRRRuRDlllluuullluuurDDluulDDDDDuulldddrRRRRRRRRRRllllluuulLLulDDDuulldddrRRRRRRRRRldR
+llluuuLLUllDlldddrRRRRRRRRdrUllllllllllulldRRRRRRRRRRRuRRlDlllluuullulldDDuulldd
+drRRRRRRRRdRRlUlllluuullLulDDDuulldddrRRRRRRRRuRDlllluuullluuurDDluulDDDDDuulldd
+drRRRRRRRRRRllllluuulLLulDDDuulldddrRRRRRRRRRldR
 5176.865227937698 seconds
 $ python sokoban_solver_3.py 9
 *####        ####*
@@ -278,7 +280,14 @@ $ python sokoban_solver_3.py 9
 # .#             #
 #@..#  #######  ##
 *#######     ####*
-urUUUUUUUUluRRRRRRRRRRRRRurDDDDDDDDDrdLLLLLLLLLLdlUUUUUUluRRRRDrDuluurDDlDlddrUUUruLdddRRRdrUUUlDuuurrdLulDDrddLLLUluuLLulDDDDDDldRRRRRRRRRRdrUUUUUUUUUruLLLLLLLLLLLLLulDDDDDDDDDDldRuuuuuuuuuurrrrrrrrrrrrrdddddddddlllllllllluuuuuurrrrDDllddrUUdRRRdrUUUlDuuurrdLdddLLLulUruLLLulDDDDDDldRRRRRRRRRRdrUUUUUUUUUruLLLLLLLLLLLLLulDDDDDDDDDDuuuuuuuuurrrrrrrrrrrrrdddddddddlllllllllluuuuuurrrddlddrUUUruLLLulDDDDDDldRRRRRRRRRRdrUUUUUUUUUruLLLLLLLLLLLLLulDDDDDDDDDuuuuuuuurrrrrrrrrrrrrdddddddddlllllllllluuuuuurrrdddrrruuruulDDDrdLLLullddrUUUruLLLulDDDDDDldRRRRRRRRRRdrUUUUUUUUUruLLLLLLLLLLLLLulDDDDDDDD
+urUUUUUUUUluRRRRRRRRRRRRRurDDDDDDDDDrdLLLLLLLLLLdlUUUUUUluRRRRDrDuluurDDlDlddrUU
+UruLdddRRRdrUUUlDuuurrdLulDDrddLLLUluuLLulDDDDDDldRRRRRRRRRRdrUUUUUUUUUruLLLLLLL
+LLLLLLulDDDDDDDDDDldRuuuuuuuuuurrrrrrrrrrrrrdddddddddlllllllllluuuuuurrrrDDllddr
+UUdRRRdrUUUlDuuurrdLdddLLLulUruLLLulDDDDDDldRRRRRRRRRRdrUUUUUUUUUruLLLLLLLLLLLLL
+ulDDDDDDDDDDuuuuuuuuurrrrrrrrrrrrrdddddddddlllllllllluuuuuurrrddlddrUUUruLLLulDD
+DDDDldRRRRRRRRRRdrUUUUUUUUUruLLLLLLLLLLLLLulDDDDDDDDDuuuuuuuurrrrrrrrrrrrrdddddd
+dddlllllllllluuuuuurrrdddrrruuruulDDDrdLLLullddrUUUruLLLulDDDDDDldRRRRRRRRRRdrUU
+UUUUUUUruLLLLLLLLLLLLLulDDDDDDDD
 14102.903747797012 seconds
 ```
 
