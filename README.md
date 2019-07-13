@@ -163,7 +163,7 @@ $ python sokoban_solver_2.py 4
 ######
 rdrruLuurrrDullldddlluRdrUUdrrR
 0.09712076187133789 seconds
-$ python3 sokoban_solver_2.py 6
+$ python sokoban_solver_2.py 6
 #######
 #.@ # #
 #$* $ #
@@ -173,7 +173,7 @@ $ python3 sokoban_solver_2.py 6
 #######
 DDrdrruLruLLDllU
 3.3833835124969482 seconds
-python3 sokoban_solver_2.py 7
+$ python sokoban_solver_2.py 7
  #####
 ##   #
 #@$  #
@@ -212,7 +212,75 @@ a corner and can not be pushed out of the corner anymore. Like this:
 ...
 ```
 
-To be continued...
+A box gets immovable as soon as it gets pushed into a corner of walls or even other boxes.
+
+```
+##########
+#        #
+# @  *$  #
+#.   #$  #
+#.       #
+##########
+```
+
+As an example the warehouse keeper can not move any box. The situation is unsovable.
+Meaning the strategy to optimize the search finding a solution is to avoid pushes of a
+box into such corners.
+
+Furthermore to reduce memory consumption of the remaining search tree instead of
+storing the whole level scenario it is sufficient to store a much shorter unique
+identifier of the level scenario. This is usually done by storing so called hash
+values representing the data. Mind that you have to avoid hash value collisions.
+Python is helping here at this point since some data representations are already
+stored using hash values. So it is not needed to implement a hash function. Instead
+the python internal hash function of the data is used. Since lists do not own a hash
+value but strings the list is joined as a string:
+
+```Python
+    visited = set([hash(''.join(self.getLevel()))])
+    ...
+          sHash = hash(''.join(s.getLevel()))
+          if sHash not in visited:
+            ...
+            visited.add(sHash)    
+```
+
+Although this will allow to render a solution for a greater set of levels the
+needed runtime might still be consider being high on nowadays machines.
+
+```
+$ python sokoban_solver_3.py 8
+    #####
+    #   #
+    #$  #
+  ###  $###
+  #  $  $ #
+### # # # #*#####
+#   # ### ##  ..#
+# $  $      @ ..#
+##### #### #  ..#
+    #      *#####
+    ########
+llluuuLLUllDlldddrRRRRRRRRdrUllllllllllulldRRRRRRRRRRRuRRlDlllluuullulldDDuulldddrRRRRRRRRdRRlUlllluuullLulDDDuulldddrRRRRRRRRuRDlllluuullluuurDDluulDDDDDuulldddrRRRRRRRRRRllllluuulLLulDDDuulldddrRRRRRRRRRldR
+5176.865227937698 seconds
+$ python sokoban_solver_3.py 9
+*####        ####*
+##  ##########  ##
+#                #
+#  *###########  #
+## #*  #  #   # ##
+ # #      #   # #
+ # #  ##$ #  ## #
+ # ## #  $#$ #  #
+ # *# #      ## #
+ # ## #  ##   # ##
+##*#  #########  #
+# .#             #
+#@..#  #######  ##
+*#######     ####*
+urUUUUUUUUluRRRRRRRRRRRRRurDDDDDDDDDrdLLLLLLLLLLdlUUUUUUluRRRRDrDuluurDDlDlddrUUUruLdddRRRdrUUUlDuuurrdLulDDrddLLLUluuLLulDDDDDDldRRRRRRRRRRdrUUUUUUUUUruLLLLLLLLLLLLLulDDDDDDDDDDldRuuuuuuuuuurrrrrrrrrrrrrdddddddddlllllllllluuuuuurrrrDDllddrUUdRRRdrUUUlDuuurrdLdddLLLulUruLLLulDDDDDDldRRRRRRRRRRdrUUUUUUUUUruLLLLLLLLLLLLLulDDDDDDDDDDuuuuuuuuurrrrrrrrrrrrrdddddddddlllllllllluuuuuurrrddlddrUUUruLLLulDDDDDDldRRRRRRRRRRdrUUUUUUUUUruLLLLLLLLLLLLLulDDDDDDDDDuuuuuuuurrrrrrrrrrrrrdddddddddlllllllllluuuuuurrrdddrrruuruulDDDrdLLLullddrUUUruLLLulDDDDDDldRRRRRRRRRRdrUUUUUUUUUruLLLLLLLLLLLLLulDDDDDDDD
+14102.903747797012 seconds
+```
 
 ## Links and Third Party
 
