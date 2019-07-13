@@ -246,7 +246,7 @@ value but strings the list is joined as a string:
 ```
 
 Although __sokoban_solver_3.py__ will allow to render a solution for a greater set of levels the
-needed runtime might still be considered being high on nowadays machines.
+runtime is still considered being high on nowadays machines.
 
 ```
 $ python sokoban_solver_3.py 8
