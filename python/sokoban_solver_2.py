@@ -13,6 +13,7 @@
 from collections import deque
 import time
 import sys
+from levels import *
 
 class Sokoban:
 
@@ -126,131 +127,13 @@ class Sokoban:
             visited.add(sj)
     return None
 
-levels = {
-  'symbol' : {
-    'floor':            " ",
-    'wall':             "#",
-    'box':              "$",
-    'sokoban':          "@",
-    'storage':          ".",
-    'boxOnStorage':     "*",
-    'sokobanOnStorage': "+",
-  },
-  'setup' : [ {
-    'plan': [
-    "###",
-    "#.#",
-    "# #",
-    "#$#",
-    "#@#",
-    "###",
-    ],
-    'info': 'Push box onto storage!',
-  }, {
-    'plan': [
-    "#########",
-    "#. $@$ .#",
-    "#########",
-    ],
-    'info': 'Multiple boxes...',
-  }, {
-    'plan': [
-    "#########",
-    "# .$@$. #",
-    "#########",
-    ],
-    'info': 'Don´t push too far!',
-  }, {
-    'plan': [
-    "######",
-    "#   .#",
-    "#  ###",
-    "##$#",
-    " #@#",
-    " ###",
-    ],
-    'info': 'Around the corner.',
-  }, {
-    'plan': [
-    "  ######",
-    "  #.   #",
-    "### ##$###",
-    "#@ $   . #",
-    "#    ####*",
-    "######",
-    ],
-  }, {
-    'plan': [
-    "#####",
-    "#  @#",
-    "#*$ #",
-    "#.###",
-    "###",
-    ],
-    'info': 'Easy going!',
-  }, {
-    'plan': [
-    "#######",
-    "#.@ # #",
-    "#$* $ #",
-    "#   $ #",
-    "# ..  #",
-    "#  *  #",
-    "#######",
-    ],
-    'info': 'Not so easy...',
-  }, {
-    'plan': [
-    " #####",
-    "##   #",
-    "#@$  #",
-    "#. $##",
-    "#.  #",
-    "#####",
-    ],
-    'info': 'On the other side',
-  }, {
-    'plan': [
-    "    #####",
-    "    #   #",
-    "    #$  #",
-    "  ###  $###",
-    "  #  $  $ #",
-    "### # # # #*#####",
-    "#   # ### ##  ..#",
-    "# $  $      @ ..#",
-    "##### #### #  ..#",
-    "    #      *#####",
-    "    ########",
-    ],
-    'info': 'Moderate challenge',
-  }, {
-    'plan': [
-    "*####        ####*",
-    "##  ##########  ##",
-    "#                #",
-    "#  *###########  #",
-    "## #*  #  #   # ##",
-    " # #      #   # #",
-    " # #  ##$ #  ## #",
-    " # ## #  $#$ #  #",
-    " # *# #      ## #",
-    " # ## #  ##   # ##",
-    "##*#  #########  #",
-    "# .#             #",
-    "#@..#  #######  ##",
-    "*#######     ####*",
-    ],
-    'info': 'A long way...',
-  }],
-};
-
 if __name__ == '__main__':
   levelsTotal = len(levels['setup'])
-  level = levels['setup'][int(sys.argv[1])]['plan']
+  level = levels['setup'][int(sys.argv[1])]
   start = time.time()
-  s = Sokoban(level)
+  s = Sokoban(level['plan'])
   print('\n'.join(s.level))
+  print(level['info'])
   print(s.solve())
   end = time.time()
   print(end - start, 'seconds')
