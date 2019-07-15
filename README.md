@@ -75,6 +75,7 @@ $ python sokoban_solver_1.py 0
 #$#
 #@#
 ###
+Push box onto storage!
 UU
 0.000347137451171875 seconds
 ```
@@ -120,6 +121,7 @@ $ python sokoban_solver_1.py 3
 ##$#
  #@#
  ###
+Around the corner.
 UUluRR
 0.003311634063720703 seconds
 $ python sokoban_solver_1.py 5
@@ -128,6 +130,7 @@ $ python sokoban_solver_1.py 5
 #*$ #
 #.###
 ###
+Easy going!
 llDurrdL
 0.016065359115600586 seconds
 ```
@@ -161,7 +164,8 @@ $ python sokoban_solver_2.py 4
 #@ $   . #
 #    ####*
 ######
-rdrruLuurrrDullldddlluRdrUUdrrR
+
+drrruLuurrrDullldddlluRdrUUdrrR
 0.09712076187133789 seconds
 $ python sokoban_solver_2.py 6
 #######
@@ -171,6 +175,7 @@ $ python sokoban_solver_2.py 6
 # ..  #
 #  *  #
 #######
+Not so easy...
 DDrdrruLruLLDllU
 3.3833835124969482 seconds
 $ python sokoban_solver_2.py 7
@@ -180,6 +185,7 @@ $ python sokoban_solver_2.py 7
 #. $##
 #.  #
 #####
+On the other side
 RurrdLulDlddrrULuurrdLulDDrdL
 0.0918741226196289 seconds
 ```
@@ -199,6 +205,7 @@ $ python sokoban_solver_2.py 8
 ##### #### #  ..#
     #      *#####
     ########
+Moderate challenge
 ```
 
 Again memory consumption is high. And it continous to search for solutions even if it is
@@ -273,6 +280,7 @@ $ python sokoban_solver_3.py 8
 ##### #### #  ..#
     #      *#####
     ########
+Moderate challenge
 llluuuLLUllDlldddrRRRRRRRRdrUllllllllllulldRRRRRRRRRRRuRRlDlllluuullulldDDuulldd
 drRRRRRRRRdRRlUlllluuullLulDDDuulldddrRRRRRRRRuRDlllluuullluuurDDluulDDDDDuulldd
 drRRRRRRRRRRllllluuulLLulDDDuulldddrRRRRRRRRRldR
@@ -292,6 +300,7 @@ $ python sokoban_solver_3.py 9
 # .#             #
 #@..#  #######  ##
 *#######     ####*
+A long way...
 urUUUUUUUUluRRRRRRRRRRRRRurDDDDDDDDDrdLLLLLLLLLLdlUUUUUUluRRRRDrDuluurDDlDlddrUU
 UruLdddRRRdrUUUlDuuurrdLulDDrddLLLUluuLLulDDDDDDldRRRRRRRRRRdrUUUUUUUUUruLLLLLLL
 LLLLLLulDDDDDDDDDDldRuuuuuuuuuurrrrrrrrrrrrrdddddddddlllllllllluuuuuurrrrDDllddr
