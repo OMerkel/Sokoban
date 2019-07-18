@@ -1952,7 +1952,8 @@ levels = {
     "  #  #######",
     "  ####",
     ],
-    info: "by David W. Skinner, Microban 134",
+    info: 'by David W. Skinner, Microban 134',
+    solution: 'rurrdLLrrrruUUUruulDDDDDrdLLLuluuuuRRlldllLulldRRRRddddLdlUUUUdddrrurrdLLrrrruuuuruulDDDDDrdLLLrruuuuulllDDlulLulldRRRRddddLdlUUUUdddrruuRdrdLrrruuuuulllDDlulLulldRRRRdrrDLddLLdlUUUUdddrrrrrruuuuulllDllLulldRRRRdRddlUddrrrruuuuulllDDDlddrrULdlU',
   }, {
     plan: [
     "#######",
@@ -2037,7 +2038,8 @@ levels = {
     "##    #",
     " ######",
     ],
-    info: "by David W. Skinner, Microban 140",
+    info: 'by David W. Skinner, Microban 140',
+    solution: 'ddrrRuRuRuRurrdLdLdLdLLLLulldRluuullddddrdrrruUrrrrururuulDlDlDururrdLdLdLLLLUlldRurUluurrdLulDlllddddrdrrruUrrrruruulDlDurrdLdLLLLUUdlldRluuullddddrdrrruUrrrruulDrdLLLLUlldRurDlluuurDuurrdLulDldddrruULulllddddrdrrrUUlluUruLLulDDDDuuurrrurrdLLLLulDDDuurrdddrUdrUULdlUruLLulDDurrrurrdLLLLulD',
   }, {
     plan: [
     "  ########",
@@ -2143,7 +2145,8 @@ levels = {
     "  #   ##",
     "  #####",
     ],
-    info: "by David W. Skinner, Microban 147",
+    info: 'by David W. Skinner, Microban 147',
+    solution: 'lllllldddRRuLdlUUluRRRRRRdrrruullDllllllddrrrDrddlUruLLLrrdddlluUlUUUluRRRRRRlllllddrrdLdlUUUluRRRRRdrdrruLrruullDLLLLLLrrrrrrurrdddlllURRdrUlluLL',
   }, {
     plan: [
     "###########",
@@ -2154,7 +2157,8 @@ levels = {
     " ##           #",
     "  #############",
     ],
-    info: "by David W. Skinner, Microban 148 ´from (Original 18)´",
+    info: 'by David W. Skinner, Microban 148 ´from (Original 18)´',
+    solution: 'lllullddrdrdrrrrUUddllllululuurrdrrrRurrdLLLLdlUrrrdddrruLdlUUddllllululuurrdrrrRurrdLLLLuLDrrrdddrrrruLLLdlUUddllllululuurRdrrrRurrdLLLLuLLdRurDrrdddrrrrrruLLLLLdlUUddllllululuuRRdrrrRurrdLLLLLruL',
   }, {
     plan: [
     " ####",
@@ -2170,7 +2174,8 @@ levels = {
     " #  ###",
     " ####",
     ],
-    info: "by David W. Skinner, Microban 149 ´from (Boxxle 43)´",
+    info: 'by David W. Skinner, Microban 149 ´from (Boxxle 43)´',
+    solution: 'RurDDDlddrdDldRuuuluurDRRRRllllDDDlddrUUUUluRRRddddLruuuuRllldddlddrUUUUluRRRlluuurrdLulDDldRR',
   }, {
     plan: [
     "     ####",
@@ -2182,7 +2187,8 @@ levels = {
     "#######  # ####",
     "      ####",
     ],
-    info: "by David W. Skinner, Microban 150 ´from (Original 47)´",
+    info: 'by David W. Skinner, Microban 150 ´from (Original 47)´',
+    solution: 'lldlllUUrrDullddlluRdrrRdrUluRRRRurrddlUruLLdlllluluurDDllDldRRRdrUllllllluRRRlluurrRdrruulDldDldRRRURRRRurrddlUlllllddrUluRRuRldRRRdrU',
   }, {
     plan: [
     "   ####",
@@ -2196,7 +2202,8 @@ levels = {
     "###  ####..#",
     "  ####  ####",
     ],
-    info: "by David W. Skinner, Microban 151 ´from (Original 47)´",
+    info: 'by David W. Skinner, Microban 151 ´from (Original 47)´',
+    solution: 'llulURdrUUULuurDDDDDldRRRRurrddlUruLdllllldlUlluuuruRRurDDDDldRRRRRurDlllllluulDuUlldddrRRRRRRluRRDlllllluuuluRRurDDDDldRRRRR',
   }, {
     plan: [
     "###### ####",
@@ -2209,7 +2216,8 @@ levels = {
     "#. @    $ * . #",
     "###############",
     ],
-    info: "by David W. Skinner, Microban 152",
+    info: 'by David W. Skinner, Microban 152',
+    solution: 'lluuUrrdrrrrrdrdLLLLLLuurruurrrrdrdrddrruuululululllDurrrdrdrdrdddllLLLuulllllddrrrRRllllluuulldddRRuurruuulullldDDrrdrrrrrddRRRuulululLLrrrdrdrddllluulllllulluuurrrdrDDuulullldddrrdddRRRRRuullLLrrrrddllllllluUUUdrrDDurrrrrddRlllllLL',
   }, {
     plan: [
     "#############",
@@ -2244,7 +2252,8 @@ levels = {
     "#. @ #                      #",
     "#############################",
     ],
-    info: "by David W. Skinner, Microban 154 ´Take the long way home.´",
+    info: 'by David W. Skinner, Microban 154 ´Take the long way home.´',
+    solution: 'ruuuuuuuuuuuurrrrrrrrrrrrrrrrrrrrrddddddddddllllllllllllllllluuuuuurrrrrrrrrrrrrddlllllllllllddrrrrrrrrrrrrruuuuuulllllllllllllllllddddddddddrrrrrrrrrrrrrrrrrrrrruuuuuuuuuuuuuulllllllllllllllllllllllllddddddddddddDuuuuuuuuuuuuurrrrrrrrrrrrrrrrrrrrrrrrrddddddddddddddllllllllllllllllllllluuuuuuuuuurrrrrrrrrrrrrrrrrddddddllllllllllllluurrrrrrrrrrruulllllllllllllddddddrrrrrrrrrrrrrrrrruuuuuuuuuulllllllllllllllllllllddddddddddddlL',
   }, {
     plan: [
     "    ######               ####",
@@ -2265,7 +2274,8 @@ levels = {
     "#   #########  ### @#####  #*#",
     "#####       #### ####   ######",
     ],
-    info: "by David W. Skinner, Microban 155 ´The Dungeon´",
+    info: 'by David W. Skinner, Microban 155 ´The Dungeon´',
+    solution: 'uulldRRRRRRRRdrUUUruLLLLLLLLLLLLulDDDrdLLLLLLLLLLLulllddrrUdlluurRluurrdDldRRRRRRRRRRdrUUUluRRRRRRRRRdrUUUUUUruLLLulDDDrdLLLdlUUUruLLLulDDDrdLLLLdlUUUUdrruulLLrddlluUUluRRRRRRRRRRRRRRRRRRRurDDDDDDlddrUUUUUUruLLLLLLLLLLLLLLLLLLLLulDrdLLLLLulldRurDDDDDrddlluRdrUluRRurDDDDrrddllUUUUUU',
   }, {
     plan: [
     "####",
@@ -2277,7 +2287,8 @@ levels = {
     "#  ###",
     "####",
     ],
-    info: "by David W. Skinner, Microban II 1",
+    info: 'by David W. Skinner, Microban II 1',
+    solution: 'dllUdrruLLUluurDDlDRdrruLdldlUUUrDldRuuuulDD',
   }, {
     plan: [
     " #####",
@@ -2289,7 +2300,8 @@ levels = {
     "#   #",
     "#####",
     ],
-    info: "by David W. Skinner, Microban II 2",
+    info: 'by David W. Skinner, Microban II 2',
+    solution: 'rdLulldddrrUUruLdddlluuRUrD',
   }, {
     plan: [
     "   ####",
@@ -2301,7 +2313,8 @@ levels = {
     "#   #",
     "#####",
     ],
-    info: "by David W. Skinner, Microban II 3",
+    info: 'by David W. Skinner, Microban II 3',
+    solution: 'urDurrdLLulldddrrUUddlluuRuRDllddrrUUrULrruulD',
   }, {
     plan: [
     " #####",
@@ -2313,7 +2326,8 @@ levels = {
     " ##   #",
     "  #####",
     ],
-    info: "by David W. Skinner, Microban II 4",
+    info: 'by David W. Skinner, Microban II 4',
+    solution: 'rddlDuruulldlddRdRdrUUdlluRuRRurrddlUlllddrUluRRRdrruLuLDlluR',
   }, {
     plan: [
     "######",
@@ -2324,7 +2338,8 @@ levels = {
     "  ## .##",
     "   ####",
     ],
-    info: "by David W. Skinner, Microban II 5",
+    info: 'by David W. Skinner, Microban II 5',
+    solution: 'uulDulldRRurDDrddlUlURuLddrrruLdlluurDldRluuulldRRurDDrDulldR',
   }, {
     plan: [
     "   ####",
@@ -2336,7 +2351,8 @@ levels = {
     "   ##   #",
     "    #####",
     ],
-    info: "by David W. Skinner, Microban II 6",
+    info: 'by David W. Skinner, Microban II 6',
+    solution: 'rRRdddrdrruuLLuluurDDDrrddllUlUUruLLrdddrdrruulLdlUUruL',
   }, {
     plan: [
     "  #####",
@@ -2347,7 +2363,8 @@ levels = {
     " #   @#",
     " ######",
     ],
-    info: "by David W. Skinner, Microban II 7",
+    info: 'by David W. Skinner, Microban II 7',
+    solution: 'uuLLrruullDurrddddllluURRluurrdDlllluRdrrruullD',
   }, {
     plan: [
     "########",
@@ -2358,7 +2375,8 @@ levels = {
     "  #   #",
     "  #####",
     ],
-    info: "by David W. Skinner, Microban II 8",
+    info: 'by David W. Skinner, Microban II 8',
+    solution: 'rdLLdddrruLUluRdddlUruululldRRurDDuurrdL',
   }, {
     plan: [
     "######",
@@ -2369,7 +2387,8 @@ levels = {
     "#    #",
     "######",
     ],
-    info: "by David W. Skinner, Microban II 9",
+    info: 'by David W. Skinner, Microban II 9',
+    solution: 'ulllddrRllddrrUrULddlluuuurrDurD',
   }, {
     plan: [
     "#####",
@@ -2379,7 +2398,8 @@ levels = {
     "#...  #",
     "#######",
     ],
-    info: "by David W. Skinner, Microban II 10",
+    info: 'by David W. Skinner, Microban II 10',
+    solution: 'dllUdrruLuulldDuRDuurDD',
   }, {
     plan: [
     "######",
@@ -2389,7 +2409,8 @@ levels = {
     "##   #",
     " #####",
     ],
-    info: "by David W. Skinner, Microban II 11",
+    info: 'by David W. Skinner, Microban II 11',
+    solution: 'drdrruLruulDLrrddllUlURddrruLLrruulDrdL',
   }, {
     plan: [
     " #######",
@@ -2402,7 +2423,8 @@ levels = {
     " #  #",
     " ####",
     ],
-    info: "by David W. Skinner, Microban II 12",
+    info: 'by David W. Skinner, Microban II 12',
+    solution: 'LLLulDDldRuurrrrddlUruLLLulDrrrruulDrdLLLdDlddrUUUdlluRURRRlllddrUluRRluulDDDldRdrUUluR',
   }, {
     plan: [
     "#####",
@@ -2414,7 +2436,8 @@ levels = {
     "#  +  #",
     "#######",
     ],
-    info: "by David W. Skinner, Microban II 13",
+    info: 'by David W. Skinner, Microban II 13',
+    solution: 'UUUluurDrdLdddlluRdrUUUruLullddRRdddrruLdlUUUlluurrDDDDuulluRurDDDuurrdLulD',
   }, {
     plan: [
     " ####",
@@ -2425,7 +2448,8 @@ levels = {
     "##  ##",
     " ####",
     ],
-    info: "by David W. Skinner, Microban II 14",
+    info: 'by David W. Skinner, Microban II 14',
+    solution: 'rRlddrUrULdlluururDDrdLurruLL',
   }, {
     plan: [
     "####",
@@ -2436,7 +2460,8 @@ levels = {
     " #   ##",
     " #####",
     ],
-    info: "by David W. Skinner, Microban II 15",
+    info: 'by David W. Skinner, Microban II 15',
+    solution: 'ulDrdLdlluURlluurDldRddrruruulDLLddrUdrU',
   }, {
     plan: [
     "    ####",
@@ -2448,7 +2473,8 @@ levels = {
     "# ..####",
     "#####",
     ],
-    info: "by David W. Skinner, Microban II 16",
+    info: 'by David W. Skinner, Microban II 16',
+    solution: 'ulDuruulDDrddLLLuuuRlddddlluRdrUrrruulDrdLLLUlDldRurrruuruulDDDrdLLLulDrrruuullD',
   }, {
     plan: [
     " #####",
@@ -2460,7 +2486,8 @@ levels = {
     "#    #",
     "######",
     ],
-    info: "by David W. Skinner, Microban II 17",
+    info: 'by David W. Skinner, Microban II 17',
+    solution: 'ullDDuurrddLdddlluuRlddrruLuUrDuruullDDD',
   }, {
     plan: [
     " #####",
@@ -2472,7 +2499,8 @@ levels = {
     "#. .  #",
     "#######",
     ],
-    info: "by David W. Skinner, Microban II 18",
+    info: 'by David W. Skinner, Microban II 18',
+    solution: 'ullDDRdddlluRRuulDDrdrruLdlUlldRRluuuuurrdrdLLruulldDDDrdLurrrdLulluurD',
   }, {
     plan: [
     "#######",
@@ -2484,7 +2512,8 @@ levels = {
     " ##   #",
     "  #####",
     ],
-    info: "by David W. Skinner, Microban II 19",
+    info: 'by David W. Skinner, Microban II 19',
+    solution: 'ruulDullDRurrdddddlluluUddrdrruuuuulldRurDDDlUruulldRurDllulldRRRlldddrdrrU',
   }, {
     plan: [
     " ####",
@@ -2496,7 +2525,8 @@ levels = {
     "# @ #",
     "#####",
     ],
-    info: "by David W. Skinner, Microban II 20",
+    info: 'by David W. Skinner, Microban II 20',
+    solution: 'luRdrUUrruullDlDRuuulDDrdddlluRdrUUUluurDrrddL',
   }, {
     plan: [
     "    ####",
@@ -2511,7 +2541,8 @@ levels = {
     " #   #",
     " #####",
     ],
-    info: "by David W. Skinner, Microban II 21",
+    info: 'by David W. Skinner, Microban II 21',
+    solution: 'lulldddDldddrruUruLdddlluuRUUUUluRRRurDlddrruLullldddddlddrruUruLdlUUUUluRRRurDDrddlUlUdrruLuLLLrrrddlUruL',
   }, {
     plan: [
     " #########",
@@ -2524,7 +2555,8 @@ levels = {
     "#   #######",
     "#####",
     ],
-    info: "by David W. Skinner, Microban II 22",
+    info: 'by David W. Skinner, Microban II 22',
+    solution: 'uulLullDRRRlllDDDllddrrUUUUdddrrrruuuruulDDDDuuulllulldRRRRlllddddrrrRurrdLLLLrruuuruulDDDDrdL',
   }, {
     plan: [
     " ##### #####",
@@ -2536,7 +2568,8 @@ levels = {
     "#   #   #",
     "#########",
     ],
-    info: "by David W. Skinner, Microban II 23",
+    info: 'by David W. Skinner, Microban II 23',
+    solution: 'RDDldRRRdrruLLLLrrruuluLulDDDllddrURRRdrUUdllluuurrdRddllllluRdrrrruuRRurrddlUllllulldDldRRRdrUUdllluuurrdRRRuurrdLrddlU',
   }, {
     plan: [
     "     #####",
@@ -2552,7 +2585,8 @@ levels = {
     "    ##    ##",
     "     ######",
     ],
-    info: "by David W. Skinner, Microban II 24",
+    info: 'by David W. Skinner, Microban II 24',
+    solution: 'ulldRurDDuRRRuurrddLLLLLrrrrddlllLdlluRRRRRllluuulldRurDDurrrrdDDrrrdddldllluluurRdrUluulllLdlluRRRRRllluurrrrdDDurrdrdddldllluluurRuRlddrU',
   }, {
     plan: [
     " #####",
@@ -2564,7 +2598,8 @@ levels = {
     "## @##",
     " ####",
     ],
-    info: "by David W. Skinner, Microban II 25",
+    info: 'by David W. Skinner, Microban II 25',
+    solution: 'luluuurDuurrdLrrddlUddllluurDRddlU',
   }, {
     plan: [
     "########",
@@ -2576,7 +2611,8 @@ levels = {
     "#  .#  #",
     "########",
     ],
-    info: "by David W. Skinner, Microban II 26",
+    info: 'by David W. Skinner, Microban II 26',
+    solution: 'uLDuruullllldddddrruuuRldddlluuuuurrrrrdddlLulDDurrrddlUruLLulDrrruLruulDDDlluRdrrddlUruLLrruulDrdL',
   }, {
     plan: [
     "#######",
@@ -2590,7 +2626,8 @@ levels = {
     "#  #  #",
     "#######",
     ],
-    info: "by David W. Skinner, Microban II 27",
+    info: 'by David W. Skinner, Microban II 27',
+    solution: 'lDurrDLLulDDDrUluRddddlUUddddrUUUUUUluRdRRurDDDlUruLLrddddrUUddddlUUUUU',
   }, {
     plan: [
     "  #######",
@@ -2602,7 +2639,8 @@ levels = {
     "   #  #",
     "   ####",
     ],
-    info: "by David W. Skinner, Microban II 28",
+    info: 'by David W. Skinner, Microban II 28',
+    solution: 'uLrddlULUlldRRuRDrruLLLdrrddlUUrurruullllD',
   }, {
     plan: [
     "######",
@@ -2614,7 +2652,8 @@ levels = {
     " #  ####",
     " ####",
     ],
-    info: "by David W. Skinner, Microban II 29",
+    info: 'by David W. Skinner, Microban II 29',
+    solution: 'ruRDrdLullluuurrrDDldRdrruuLrddllullddrUluluuurrrdD',
   }, {
     plan: [
     "         #####",
@@ -2627,7 +2666,8 @@ levels = {
     "##  #####    #",
     " ####   ######",
     ],
-    info: "by David W. Skinner, Microban II 30",
+    info: 'by David W. Skinner, Microban II 30',
+    solution: 'lddrrrrrrdrrruuluuruulldDrddrddlULLLLLLLLuullddRdrUUdlluurRddrrrrrrrrUULulldRRuuurrddLDDrdLLLLLLLLLuuRlllddRdrUUdlluuurrrdLddrrrrrrrruuuruulldDldRurDDrdLLLLLLLLLuuulldddRdrUUULulDrrruLLrrrrdLLLL',
   }, {
     plan: [
     "  ########",
@@ -2640,7 +2680,8 @@ levels = {
     "######  ##",
     "     ####",
     ],
-    info: "by David W. Skinner, Microban II 31",
+    info: 'by David W. Skinner, Microban II 31',
+    solution: 'drrrrrruulDrdLLLuluuuRRurrdLLLrrDDrddlUUUdddlluluuluurDDDuurrurrdLLLrrddddlluLLdRRRdrUUUUdddllluuuluurDDDuurrurrdLLLrrddddlllluRdllluRdrruuuluurDDD',
   }, {
     plan: [
     "########",
@@ -2654,7 +2695,8 @@ levels = {
     "   #   #",
     "   #####",
     ],
-    info: "by David W. Skinner, Microban II 32",
+    info: 'by David W. Skinner, Microban II 32',
+    solution: 'rdLulluuuurrrddLLrDDlluUddrrrdddlluUddrruuLuuullddRDrUUdlluuruLurrrddLLrddlluUddrdrrddllUUruuullddRdrUUdlluurRluulDulldRRurD',
   }, {
     plan: [
     "### #######",
@@ -2665,7 +2707,8 @@ levels = {
     "## @      #",
     "###########",
     ],
-    info: "by David W. Skinner, Microban II 33",
+    info: 'by David W. Skinner, Microban II 33',
+    solution: 'rrUdlluRdrrrrruuuulldlllDRurrurrddddllllUUddrrrruuuullddLururrddddlllluLuuRRllddrUluRdddllluRRdrUU',
   }, {
     plan: [
     "#####",
@@ -2680,7 +2723,8 @@ levels = {
     " #   #",
     " #####",
     ],
-    info: "by David W. Skinner, Microban II 34",
+    info: 'by David W. Skinner, Microban II 34',
+    solution: 'lulllddddddrruLdlUUUUUUruulldRurDldRRRddldLDlUUUUruulldRurDldddddddrruLdlUUUUUURuulldRddddrruruuLrurDlddrruLdlUruL',
   }, {
     plan: [
     " ##########",
@@ -2695,7 +2739,8 @@ levels = {
     "#  .#",
     "#####",
     ],
-    info: "by David W. Skinner, Microban II 35",
+    info: 'by David W. Skinner, Microban II 35',
+    solution: 'rurDlllluulldddddrrrrurUdldlllluuuuurrrrurrrdrdddlLuLLLUdrrrdrruuulullldLLLulDDDDDDrrrrurUdldlllddlluRdrUluuuuuurrdrddlUUruLLulDDDDDDRddlluRuuuuuurrrrurrrdrdddllldldlLrrururuLLLdlUUruLLulDDDDDDDldR',
   }, {
     plan: [
     "    ######",
@@ -2707,7 +2752,8 @@ levels = {
     "#####    ##",
     "    ######",
     ],
-    info: "by David W. Skinner, Microban II 36",
+    info: 'by David W. Skinner, Microban II 36',
+    solution: 'drUluRRRDLrrruLLuurrrdrdddldlllUdrrruruuululllddLdLdlluRuRRdRddrrruruuulullldDllldR',
   }, {
     plan: [
     " #####",
@@ -2721,7 +2767,8 @@ levels = {
     "    #  #",
     "    ####",
     ],
-    info: "by David W. Skinner, Microban II 37",
+    info: 'by David W. Skinner, Microban II 37',
+    solution: 'luulLUlURdddlUruulldRdrrruuLLDldRRluurrdDDullluluRddrrruuluullDDldRdrrruulLDldRRluurrdrddlUdrddlUruullluuruulldDldRurDldRR',
   }, {
     plan: [
     "  ######",
@@ -2734,7 +2781,8 @@ levels = {
     "#  @ #",
     "######",
     ],
-    info: "by David W. Skinner, Microban II 38",
+    info: 'by David W. Skinner, Microban II 38',
+    solution: 'lluuuurrrdLullddddrrruLUUdddlluuuRuRRlDlldddrruUUruLuurrrddLruullldddllddRdrUUU',
   }, {
     plan: [
     " ######",
@@ -2747,7 +2795,8 @@ levels = {
     " ###   #",
     "   #####",
     ],
-    info: "by David W. Skinner, Microban II 39",
+    info: 'by David W. Skinner, Microban II 39',
+    solution: 'ururrrdddlDuruuullldlddrRuRDrUdlllddrRUdlluururrdLdddrruLdlUUdlluuluururrrDD',
   }, {
     plan: [
     " #####",
@@ -2760,7 +2809,8 @@ levels = {
     " # @ #",
     " #####",
     ],
-    info: "by David W. Skinner, Microban II 40",
+    info: 'by David W. Skinner, Microban II 40',
+    solution: 'ruuLuUruLdddrddlUUUUllddRluurrruullDurrddldDlluuR',
   }, {
     plan: [
     "#####",
@@ -2771,7 +2821,8 @@ levels = {
     "####   #",
     "   #####",
     ],
-    info: "by David W. Skinner, Microban II 41",
+    info: 'by David W. Skinner, Microban II 41',
+    solution: 'luuurrdrdrrddllUdrruulullulldddrRlluuurrdDRurrdddllUUddrruuLrddlluLuuulldddRR',
   }, {
     plan: [
     " #######",
@@ -2783,7 +2834,8 @@ levels = {
     "  #   ##",
     "  #####",
     ],
-    info: "by David W. Skinner, Microban II 42",
+    info: 'by David W. Skinner, Microban II 42',
+    solution: 'ldlluuurrRllldddrrurUrULLLLdlluRuurrrrDDllLdddrrurUruLuulllldDldRuuurrrrddrruLdlLLLDlluRuurrrrDrdLLrddldllU',
   }, {
     plan: [
     "     ####",
@@ -2795,7 +2847,8 @@ levels = {
     " ##  ######",
     "  ####",
     ],
-    info: "by David W. Skinner, Microban II 43",
+    info: 'by David W. Skinner, Microban II 43',
+    solution: 'lddddrrruuluLulDDurrdLrrddllULLLLrrrURuulDDrdLLLdllURurDrrdrrruuLLulDrdLLLulDlluR',
   }, {
     plan: [
     "    ####",
@@ -2809,7 +2862,8 @@ levels = {
     "#     #####",
     "#######",
     ],
-    info: "by David W. Skinner, Microban II 44",
+    info: 'by David W. Skinner, Microban II 44',
+    solution: 'lUlldddrrrrruuruuLLdLLLulDDDuurrrruulDrrrddddlllddlllluuRRRRRRuuruulldLLLulDDDuuurRdrruulDrrrdddldllddlllluuRRluuuurrrrdLLLulDDDuuurrrrrrdddldllddlllluuRlddrrrruurrdrruLLL',
   }, {
     plan: [
     "   ###  #####",
@@ -2820,7 +2874,8 @@ levels = {
     "#############",
     "      #  #",
     ],
-    info: "by David W. Skinner, Microban II 45",
+    info: 'by David W. Skinner, Microban II 45',
+    solution: 'lULLLLdlluurDldRRurrruRRRllddrURuurrddLLLLLLLLdlluurDrrrrrrruurDrdLLLLLLLLrrrurRRurDrdLLLLLLLrdL',
   }, {
     plan: [
     "########",
@@ -2834,7 +2889,8 @@ levels = {
     "#   #####",
     "#####",
     ],
-    info: "by David W. Skinner, Microban II 46",
+    info: 'by David W. Skinner, Microban II 46',
+    solution: 'dlldlluuurrDRlLuluullldddddrrruUUdddrrUruLLulDDurrddlLLLdlUrrrrrurrruLLLLulUdDDurrddlLLLdlluRRRRlllUUUUluurDDDDDuuuurrurrdLLLrrdddddlldlluRRluuuuluurDDDDD',
   }, {
     plan: [
     "######",
@@ -2849,7 +2905,8 @@ levels = {
     "#  ######",
     "####",
     ],
-    info: "by David W. Skinner, Microban II 47",
+    info: 'by David W. Skinner, Microban II 47',
+    solution: 'lulldRdlddrUUddrruLdlluurDldRluuuurDDDrDDDrdLullddrUluRRuuulldRuuuurrdLulDDDrDDDRRdlLullddrUluRRuuulldRuuurrrrddLLLDDDRdLullddrUluRRdrrrruulDrdLLLLullddrUruuulluurDldRurDD',
   }, {
     plan: [
     "     #####",
@@ -2860,7 +2917,8 @@ levels = {
     "##  .  #",
     " #######",
     ],
-    info: "by David W. Skinner, Microban II 48",
+    info: 'by David W. Skinner, Microban II 48',
+    solution: 'dddrruULrrruullDldRlulDullDRRurrdddllUUddrruuLrddllllUluRurRDDuulldRurDrruLrurrddLLL',
   }, {
     plan: [
     " #####",
@@ -2873,7 +2931,8 @@ levels = {
     " # @ ##",
     " #####",
     ],
-    info: "by David W. Skinner, Microban II 49",
+    info: 'by David W. Skinner, Microban II 49',
+    solution: 'uruUULulldRDDRddlUrrruuluLuurD',
   }, {
     plan: [
     " ########",
@@ -2884,7 +2943,8 @@ levels = {
     "#   #  #",
     "########",
     ],
-    info: "by David W. Skinner, Microban II 50",
+    info: 'by David W. Skinner, Microban II 50',
+    solution: 'LulDlddrrUUrRdrUruulDulDrDLddrUluLLddlluuRRRlluurDldlddrU',
   }, {
     plan: [
     "########",
@@ -2895,7 +2955,8 @@ levels = {
     "#@ $.  #",
     "########",
     ],
-    info: "by David W. Skinner, Microban II 51",
+    info: 'by David W. Skinner, Microban II 51',
+    solution: 'rRRuuuuLDlluRRdrddrrdLulLdlluRRUruLulldRR',
   }, {
     plan: [
     "   ####",
@@ -2908,7 +2969,8 @@ levels = {
     "#   #  #",
     "########",
     ],
-    info: "by David W. Skinner, Microban II 52",
+    info: 'by David W. Skinner, Microban II 52',
+    solution: 'drrdLLLruuuruulDDDDLddlluuRRdRUUUruulDDDDllldR',
   }, {
     plan: [
     " ######",
@@ -2919,7 +2981,8 @@ levels = {
     "#   ####",
     "#####",
     ],
-    info: "by David W. Skinner, Microban II 53",
+    info: 'by David W. Skinner, Microban II 53',
+    solution: 'ldlUddlluRdrUruuulldRurDrdrdLLLURuulldRRddldlluRdrUUruLddrrruLdlU',
   }, {
     plan: [
     "     #####",
@@ -2935,7 +2998,8 @@ levels = {
     "#   ####",
     "#####",
     ],
-    info: "by David W. Skinner, Microban II 54",
+    info: 'by David W. Skinner, Microban II 54',
+    solution: 'dddlllldDRlllddrrUruLdrrruLUddlluuurRRRdrruLdlUllllddRdrUUddlldlluuRRuurRRRUUruLdlluurDrddddrruLdlUllllddRdrUUdlluurRRRUUruLddddrruLdlUUUruuulldlddRluurDuurrddLDDDuuuruulldlddRluurDrDDuulldRurD',
   }, {
     plan: [
     "   ####",
@@ -2952,7 +3016,8 @@ levels = {
     "#   @   #",
     "#########",
     ],
-    info: "by David W. Skinner, Microban II 55",
+    info: 'by David W. Skinner, Microban II 55',
+    solution: 'urruuuuuuuuLulDDlluRRdDrrddddddllluuuruUlURuulDrddddldddrrruuuuuuuuLLddRluurrdDDDDDDuuuuullulluRdrddddlddddrrrruLLLLuuuruulUrrruululDDulldRdRRlluurrrdDDDDDDuuuuulldddlddddrrrruLLruuuuuuuullDldRRluurrdDDDDDDuuuuulldddlddddlluRdrUUUdddrruLdlUUddrrrruLLLdlU',
   }, {
     plan: [
     "   #####",
@@ -2964,7 +3029,8 @@ levels = {
     "  #   ##",
     "  #####",
     ],
-    info: "by David W. Skinner, Microban II 56",
+    info: 'by David W. Skinner, Microban II 56',
+    solution: 'ddldlluurULdddrruruuLLrruullDlDRlDlluRdrruulDrdLuururrddLruulldlddrUllldRRurrrddldllUUluR',
   }, {
     plan: [
     "   #####",
@@ -2976,7 +3042,8 @@ levels = {
     "  #   #",
     "  #####",
     ],
-    info: "by David W. Skinner, Microban II 57",
+    info: 'by David W. Skinner, Microban II 57',
+    solution: 'uuulDullDRurrddddlluURlUlldRuuRRurrdLdLLrruulDrdL',
   }, {
     plan: [
     "    ####",
@@ -2989,7 +3056,8 @@ levels = {
     "###  #",
     "  ####",
     ],
-    info: "by David W. Skinner, Microban II 58",
+    info: 'by David W. Skinner, Microban II 58',
+    solution: 'uuLLLdDDrUluurrrddLLdllluuuRRdDrdLLruuullddDrrurrruulLDurrddlLdllddrUlulldRuuuurRdrddLLrrurruululDDlDuullddDuuurrrrrddlLdLLrruulDrdL',
   }, {
     plan: [
     " ######",
@@ -3001,7 +3069,8 @@ levels = {
     "#   ##   #",
     "##########",
     ],
-    info: "by David W. Skinner, Microban II 59",
+    info: 'by David W. Skinner, Microban II 59',
+    solution: 'uululldRDDuuurrddddlLuuuRurDDDuulldddrRRdrruLuuuLLdddRdrUlllluuuRurDDDuulldddrRRdrruLLLuuurrdDuulldddrdrruL',
   }, {
     plan: [
     " #######    #####",
@@ -3012,7 +3081,8 @@ levels = {
     "#  #   #   #   #",
     "################",
     ],
-    info: "by David W. Skinner, Microban II 60",
+    info: 'by David W. Skinner, Microban II 60',
+    solution: 'rrrrrddllldlluRRlllldlluRRRRdrruRRdrruLuullllllllllldldRRRdrrurrdrrurRdrUUdllldllulldllulluurrrrrrrrrrRurrdLLLLLLLLLLLulldddrrdrrurrRRRRdrUUdllllllldllulluuurrdrrrrrrrrRurrdLLLLLLLLLulllldddrrRRRRRRRRdrUUdllllllllllluuurrrrdrrrrrrRurrdLLddllllllllllluuurrdRRRRRRllllllulldRRRRRRR',
   }, {
     plan: [
     "#####",
@@ -3022,7 +3092,8 @@ levels = {
     "#.....   #",
     "##########",
     ],
-    info: "by David W. Skinner, Microban II 61",
+    info: 'by David W. Skinner, Microban II 61',
+    solution: 'dllluRdlllURdlllURuulDDrdrruLdlUluurrDDrdrruLLLuullddRdRRlluluurDrDulldRdRluurDrrrdrruLLLLLulD',
   }, {
     plan: [
     "   ####",
@@ -3034,7 +3105,8 @@ levels = {
     "#     #",
     "#######",
     ],
-    info: "by David W. Skinner, Microban II 62",
+    info: 'by David W. Skinner, Microban II 62',
+    solution: 'ldlUdrddlULrruulDrddlluRdrUUluRuulDDDrddlluRdrUUddlllluRRRuuurrrddLUruL',
   }, {
     plan: [
     "#####",
@@ -3047,7 +3119,8 @@ levels = {
     "     ###  ##",
     "       ####",
     ],
-    info: "by David W. Skinner, Microban II 63",
+    info: 'by David W. Skinner, Microban II 63',
+    solution: 'llluulluLdrrruLdlluLulldRdRRRRurDDrddlluRRuruLLulLdRurDDrddlluRuullllluurDldRRRRurDDDldRRUluulluLdlluurDldRRRRurDDurrdrddLUlLrrddlU',
   }, {
     plan: [
     "#########",
@@ -3058,7 +3131,8 @@ levels = {
     " #   #####",
     " #####",
     ],
-    info: "by David W. Skinner, Microban II 64",
+    info: 'by David W. Skinner, Microban II 64',
+    solution: 'ulDDuulDLdddlluuluurDRRddrRuLruulDrddlldlluUluRRRDuRurrdrddL',
   }, {
     plan: [
     "######",
@@ -3072,7 +3146,8 @@ levels = {
     "#    ###",
     "######",
     ],
-    info: "by David W. Skinner, Microban II 65",
+    info: 'by David W. Skinner, Microban II 65',
+    solution: 'RUrDllddRddllluuuuuuurrrDullldddddddrrruuluurrrdDLUruL',
   }, {
     plan: [
     "     #####",
