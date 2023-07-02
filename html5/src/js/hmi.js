@@ -100,7 +100,8 @@ Hmi.prototype.controlDirection = function ( p, t, orientation, color, handler ) 
 Hmi.prototype.initBoard = function () {
   this.paper = Raphael( 'board', 400, 400);
   this.paper.setViewBox(0, 0, 400, 400, false );
-  this.challenge = 0;
+  var c = localStorage.getItem('SokobanChallenge');
+  this.challenge = null == c ? 0 : parseInt(c);
   this.setupChallenge();
 };
 
@@ -389,6 +390,7 @@ Hmi.prototype.updateChallenge = function() {
     'font-size' : 10,
     fill: 'lightgray',
   });
+  localStorage.setItem('SokobanChallenge', '' + this.challenge);
   this.setHeader();
   this.updateStatistics();
 };
