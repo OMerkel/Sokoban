@@ -373,14 +373,14 @@ Hmi.prototype.updateChallenge = function() {
     this.orientation.up, 'black', this.moveUp );
   this.controlDirection({x: 0, y: 0.134*this.boardSize}, controlTranslate,
     this.orientation.down, 'black', this.moveDown );
-  if (this.moves.length == 0) {
+  if (this.moves.length == 0 || this.isCompleted()) {
     controlTranslate = { x: 0.5*this.boardSize, y: 0.33*this.boardSize };
     this.controlDirection({x:-0.4*this.boardSize, y: 0}, controlTranslate,
       this.orientation.left, 'white', this.previous );
     this.controlDirection({x: 0.4*this.boardSize, y: 0}, controlTranslate,
       this.orientation.right, 'white', this.next );
   }
-  this.completed = this.completed ? true : this.isCompleted();
+  this.completed = this.completed | this.isCompleted();
   var info = levels.setup[this.challenge].hasOwnProperty('info') &&
     $('#fullinfo').is(':checked') ? (levels.setup[this.challenge].info + '\n'):'';
   var completed = this.completed ? ('Level has been completed!' +
