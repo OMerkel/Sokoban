@@ -9,6 +9,10 @@ He has to push boxes onto marked storage locations to solve each level.
 The original game of Sokoban was created back in the early 1980s Home Computer era by
 Hiroyuki Imabayashi then distributed by Thinking Rabbit, a Japanese software house.
 
+## Android APK available for install
+
+<img alt="Android APK available" src="res/android.gif" width="32" /> https://github.com/OMerkel/Sokoban/releases
+
 ## Usage of Browser Javascript Version
 
 Simply start a session of the [Sokoban game](https://omerkel.github.io/Sokoban/html5/src)
