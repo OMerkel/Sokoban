@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="io.github.omerkel.sokoban" version="0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>倉庫番 - Sokoban</name>
+    <description>
+        倉庫番 - Sokoban solitaire puzzle game
+    </description>
+    <author email="Merkel.Oliver@web.de" href="https://github.com/OMerkel">
+        Oliver Merkel
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+        <preference name="android-minSdkVersion" value="33" />
+        <preference name="android-targetSdkVersion" value="33" />
+        <preference name="AndroidWindowSplashScreenAnimatedIcon" value="res/screen/android/splashscreen.png" />
+        <preference name="SplashScreenDelay" value="4000" />
+        <preference name="AndroidWindowSplashScreenBackground" value="#be4814" />
+        <icon density="ldpi" src="www/img/icons/sokoban32.png" />
+        <icon density="mdpi" src="www/img/icons/sokoban48.png" />
+        <icon density="hdpi" src="www/img/icons/sokoban64.png" />
+        <icon density="xhdpi" src="www/img/icons/sokoban90.png" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+</widget>
