@@ -212,7 +212,7 @@ $ python sokoban_solver_2.py 8
 Moderate challenge
 ```
 
-Again memory consumption is high. And it continous to search for solutions even if it is
+Again memory consumption is high. And it continues to search for solutions even if it is
 clear that a specific solution is already unsolveable. E.g. if a box gets pushed into
 a corner and can not be pushed out of the corner anymore. Like this:
 
