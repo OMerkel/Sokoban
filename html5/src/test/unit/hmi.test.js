@@ -237,4 +237,120 @@ describe('createHmi', () => {
     dispatchKey('w');
     expect(hmi.getState().moves).toBe('');
   });
+
+  it('undoes the last move when "ctrl+z" is pressed', () => {
+    hmi.init();
+    dispatchKey('w');
+    expect(hmi.getState().moves).toBe('U');
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'z', ctrlKey: true, cancelable: true }));
+    expect(hmi.getState().moves).toBe('');
+  });
+
+  it('undoes the last move when "cmd+z" (metaKey) is pressed', () => {
+    hmi.init();
+    dispatchKey('w');
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Z', metaKey: true, cancelable: true }));
+    expect(hmi.getState().moves).toBe('');
+  });
+
+  it('prevents the default action for the undo shortcut', () => {
+    hmi.init();
+    dispatchKey('w');
+    const event = new KeyboardEvent('keydown', { key: 'z', ctrlKey: true, cancelable: true });
+    document.dispatchEvent(event);
+    expect(event.defaultPrevented).toBe(true);
+  });
+
+  it('closes the navigation panel when the undo shortcut is used', () => {
+    const navigation = { closePanel: vi.fn() };
+    hmi.init(navigation);
+    dispatchKey('w');
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'z', ctrlKey: true, cancelable: true }));
+    expect(navigation.closePanel).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not undo for "z" without a modifier key', () => {
+    hmi.init();
+    dispatchKey('w');
+    dispatchKey('z');
+    expect(hmi.getState().moves).toBe('U');
+  });
+
+  it('does not undo for "ctrl+alt+z"', () => {
+    hmi.init();
+    dispatchKey('w');
+    document.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'z', ctrlKey: true, altKey: true, cancelable: true }),
+    );
+    expect(hmi.getState().moves).toBe('U');
+  });
+
+  it('ignores the undo shortcut while a subpage is shown instead of the game page', () => {
+    hmi.init();
+    dispatchKey('w');
+    document.getElementById('game-page').hidden = true;
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'z', ctrlKey: true, cancelable: true }));
+    expect(hmi.getState().moves).toBe('U');
+  });
+
+  it('advances to the next level when "ctrl+g" is pressed', () => {
+    hmi.init();
+    const before = hmi.getState().challenge;
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'g', ctrlKey: true, cancelable: true }));
+    expect(hmi.getState().challenge).toBe(before + 1);
+  });
+
+  it('goes to the previous level when "ctrl+shift+g" is pressed', () => {
+    hmi.init();
+    document.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'G', ctrlKey: true, shiftKey: true, cancelable: true }),
+    );
+    expect(hmi.getState().challenge).toBeGreaterThanOrEqual(0);
+  });
+
+  it('goes to the previous level with "cmd+shift+g" (metaKey)', () => {
+    hmi.init();
+    document.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'G', metaKey: true, shiftKey: true, cancelable: true }),
+    );
+    expect(hmi.getState().challenge).toBeGreaterThanOrEqual(0);
+  });
+
+  it('prevents the default action for the level-switch shortcuts', () => {
+    hmi.init();
+    const event = new KeyboardEvent('keydown', { key: 'g', ctrlKey: true, cancelable: true });
+    document.dispatchEvent(event);
+    expect(event.defaultPrevented).toBe(true);
+  });
+
+  it('closes the navigation panel when a level-switch shortcut is used', () => {
+    const navigation = { closePanel: vi.fn() };
+    hmi.init(navigation);
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'g', ctrlKey: true, cancelable: true }));
+    expect(navigation.closePanel).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not switch levels for "g" without a modifier key', () => {
+    hmi.init();
+    const before = hmi.getState().challenge;
+    dispatchKey('g');
+    expect(hmi.getState().challenge).toBe(before);
+  });
+
+  it('does not switch levels for "ctrl+alt+g"', () => {
+    hmi.init();
+    const before = hmi.getState().challenge;
+    document.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'g', ctrlKey: true, altKey: true, cancelable: true }),
+    );
+    expect(hmi.getState().challenge).toBe(before);
+  });
+
+  it('ignores the level-switch shortcuts while a subpage is shown instead of the game page', () => {
+    hmi.init();
+    const before = hmi.getState().challenge;
+    document.getElementById('game-page').hidden = true;
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'g', ctrlKey: true, cancelable: true }));
+    expect(hmi.getState().challenge).toBe(before);
+  });
 });

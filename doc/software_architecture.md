@@ -79,6 +79,7 @@ flowchart LR
   UC5([Switch to next/previous/random level])
   UC6([Open the hamburger menu])
   UC7([View rules, statistics, options, or about])
+  UC8([Use keyboard shortcuts for movement, undo, and level switching])
 
   Player --> UC1
   Player --> UC2
@@ -87,6 +88,7 @@ flowchart LR
   Player --> UC5
   Player --> UC6
   Player --> UC7
+  Player --> UC8
 ```
 
 ## Class Diagram
@@ -111,6 +113,7 @@ classDiagram
     -move(directionName)
     -undo()
     -next()/previous()/random()/restart()
+    -handleKeydown(event)
   }
 
   class Render {
@@ -190,6 +193,46 @@ sequenceDiagram
   Nav->>DOM: left-panel.classList.remove('open')
   Player->>Nav: Click "Back"/"Close"/"Ok"
   Nav->>DOM: show #game-page, hide the subpage
+```
+
+## Keyboard Input Handling
+
+In addition to the on-screen joystick, `hmi.js` attaches a single
+`keydown` listener (via `bindControls`) that maps keys to the same
+`move`/`undo`/`next`/`previous` actions used by the clickable controls:
+
+- **Movement**: `w`/`a`/`s`/`d` or the arrow keys map to
+  up/left/down/right via a `DIRECTION_KEYS` lookup table.
+- **Undo**: `Ctrl+Z` or `Cmd+Z` (metaKey) triggers `undo()`.
+- **Level switching**: `Ctrl+G` triggers `next()`; `Ctrl+Shift+G`
+  triggers `previous()`.
+
+Every shortcut calls `event.preventDefault()` once handled (so arrow
+keys do not scroll the page) and is ignored when an unrelated modifier
+is held (e.g. `Alt`), when no shortcut matches the key, or while a
+subpage is shown instead of `#game-page`. This keeps keyboard input a
+thin, additive input source on top of the same domain/render APIs used
+by pointer input, with no new coupling between board.js and the DOM.
+
+### Keyboard Shortcut Sequence
+
+```mermaid
+sequenceDiagram
+  actor Player
+  participant Hmi as hmi.js
+  participant Board as board.js
+
+  Player->>Hmi: keydown (e.g. "w", "Ctrl+Z", "Ctrl+G")
+  alt movement key
+    Hmi->>Board: applyMove(state, directionName)
+  else Ctrl+Z / Cmd+Z
+    Hmi->>Board: undoMove(state)
+  else Ctrl+G / Ctrl+Shift+G
+    Hmi->>Hmi: next() / previous()
+  else unrelated key, extra modifier, or subpage visible
+    Hmi-->>Hmi: ignore event
+  end
+  Hmi-->>Player: Redraw SVG board and statistics
 ```
 
 ## Activity Diagram
@@ -354,7 +397,9 @@ and deterministic behaviors:
   reference solution string.
 - **render.test.js**: SVG DOM construction and joystick control wiring.
 - **navigation.test.js**: page/panel show-and-hide behavior.
-- **hmi.test.js**: orchestration, statistics text, and persistence.
+- **hmi.test.js**: orchestration, statistics text, persistence, and
+  keyboard shortcuts (WASD/arrow movement, Ctrl+Z/Cmd+Z undo,
+  Ctrl+G/Ctrl+Shift+G level switching, and their ignored edge cases).
 - **main.test.js**: bootstrap wiring for both DOM-ready states.
 - **levels.test.js**: level data integrity (single sokoban per level,
   well-formed plans, symbol table parity with common.js).
@@ -367,9 +412,10 @@ workflows using Playwright:
 - **app.spec.js**: default board rendering, hamburger menu open/close,
   and navigation to/from every subpage (rules, options, statistics,
   about), confirming the board and subpages are mutually exclusive.
-- **gameplay.spec.js**: solving a level via the joystick controls,
-  undoing a push, switching levels with persistence across a reload,
-  and restarting a level.
+- **gameplay.spec.js**: solving a level via the joystick controls or
+  keyboard shortcuts, undoing a push (via button or Ctrl+Z),
+  switching levels (via buttons or Ctrl+G/Ctrl+Shift+G) with
+  persistence across a reload, and restarting a level.
 
 ### Test Architecture
 
@@ -390,6 +436,10 @@ workflows using Playwright:
 - Add a new subpage: add a `.page` element with a unique id and a
   side-panel link targeting `#that-id`; navigation.js requires no
   changes.
+- Add a new keyboard shortcut: extend `DIRECTION_KEYS` or add a new
+  branch in `hmi.js`'s `handleKeydown`, guarded the same way as the
+  existing shortcuts (ignored on unrelated modifiers or a hidden
+  `#game-page`).
 
 ## Development Toolchain Baseline
 

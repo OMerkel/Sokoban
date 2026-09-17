@@ -32,6 +32,18 @@ test.describe('Sokoban gameplay', () => {
     await expect(page.locator('#pushes')).toHaveText('zero');
   });
 
+  test('undo reverts the last push when "ctrl+z" is pressed', async ({ page }) => {
+    const up = page.locator('#board svg [data-control="move-up"]');
+    await up.click();
+
+    await page.keyboard.press('Control+z');
+
+    await page.locator('#customMenu').click();
+    await page.locator('a[href="#statistics-menu"]').click();
+    await expect(page.locator('#moves')).toHaveText('No');
+    await expect(page.locator('#pushes')).toHaveText('zero');
+  });
+
   test('next/previous switch levels and persist the choice across reload', async ({ page }) => {
     await page.locator('#customMenu').click();
     await page.locator('#next').click();
@@ -45,6 +57,16 @@ test.describe('Sokoban gameplay', () => {
 
     await page.locator('#customMenu').click();
     await page.locator('#previous').click();
+    const headerAfterPrevious = await page.locator('#myheader').textContent();
+    expect(headerAfterPrevious).toContain('l0');
+  });
+
+  test('"ctrl+g" and "ctrl+shift+g" switch levels', async ({ page }) => {
+    await page.keyboard.press('Control+g');
+    const headerAfterNext = await page.locator('#myheader').textContent();
+    expect(headerAfterNext).toContain('l1');
+
+    await page.keyboard.press('Control+Shift+g');
     const headerAfterPrevious = await page.locator('#myheader').textContent();
     expect(headerAfterPrevious).toContain('l0');
   });

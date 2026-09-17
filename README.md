@@ -21,6 +21,10 @@ Simply start a session of the
 [Sokoban game](https://omerkel.github.io/Sokoban/html5/src)
 in your browser window.
 
+Move the warehouse keeper with the on-screen joystick, the WASD keys,
+or the arrow keys. Press Ctrl+Z (or Cmd+Z) to undo the last move, and
+Ctrl+G / Ctrl+Shift+G to jump to the next / previous level.
+
 ## Usage of Dart Version
 
 You can find a version written in Dart programming language in this repository, too.

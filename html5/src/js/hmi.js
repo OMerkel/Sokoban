@@ -90,13 +90,29 @@ export const createHmi = (doc = document, win = window, storage = localStorage) 
   };
 
   const handleKeydown = (event) => {
-    if (event.ctrlKey || event.altKey || event.metaKey) {
-      return;
-    }
     if (doc.getElementById('game-page')?.hidden) {
       return;
     }
-    const direction = DIRECTION_KEYS[event.key.toLowerCase()];
+    const key = event.key.toLowerCase();
+    const primaryModifier = event.ctrlKey || event.metaKey;
+    if (primaryModifier && !event.altKey && key === 'z') {
+      event.preventDefault();
+      undo();
+      return;
+    }
+    if (primaryModifier && !event.altKey && key === 'g') {
+      event.preventDefault();
+      if (event.shiftKey) {
+        previous();
+      } else {
+        next();
+      }
+      return;
+    }
+    if (event.ctrlKey || event.altKey || event.metaKey) {
+      return;
+    }
+    const direction = DIRECTION_KEYS[key];
     if (!direction) {
       return;
     }
