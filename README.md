@@ -260,7 +260,7 @@ then none of the boxes are moveable any longer.
 ```
 
 As another example the warehouse keeper can not move any box in this
-situation. The situation is unsovable. Meaning the strategy to optimize
+situation. The situation is unsolvable. Meaning the strategy to optimize
 the search finding a solution is to avoid pushes of a box into such
 corner shapes as long as the compacted shape is not part of the intended
 solution.
