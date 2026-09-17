@@ -1,35 +1,127 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #222;
+  color: #eee;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.page {
+  min-height: 100vh;
+  background-color: #222;
+}
+
+.page[hidden] {
+  display: none;
+}
+
+.app-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  background-color: #111;
+  color: #fff;
+  border-bottom: 1px solid #000;
+}
+
+.app-header h1, .app-header h4 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.mycontent {
+  padding: 8px 16px 16px;
+}
+
+.icon-btn {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  border: 0;
+  background-color: transparent;
+  color: transparent;
+  cursor: pointer;
+}
+
+.customBack {
+  left: auto;
+  right: 8px;
+}
+
+.ui-btn {
+  display: inline-block;
+  padding: 0.5em 1em;
+  margin-top: 1em;
+  border-radius: 6px;
+  background-color: #444;
+  color: #fff;
+  text-decoration: none;
+}
+
+.panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 260px;
+  background-color: #111;
+  color: #fff;
+  transform: translateX(-100%);
+  transition: transform 0.2s ease-out;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.panel.open {
+  transform: translateX(0);
+}
+
+.jqm-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.jqm-list li a {
+  display: block;
+  padding: 0.8em 1em;
+  color: #fff;
+  text-decoration: none;
+}
+
+.jqm-list li a:hover,
+.jqm-list li a:focus {
+  background-color: #333;
+}
+
+.jqm-list .list-divider {
+  background-color: #000;
+  height: 0.6em;
+}
+
+details summary {
+  cursor: pointer;
+  font-weight: bold;
+}
+
 .upsidedown{
   -ms-transform: rotate(180deg);
   -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 
-.ui-btn-icon-notext:after {
-    background-color: rgba(0, 0, 0, 0);
-}
-
 .customMenu {
     background: url(../img/icons/icon-bars.svg) 50% 50% no-repeat;
-    left: 50%;
-    top: 50%;
 }
 
 .customBack {
     background: url(../img/icons/icon-delete.svg) 50% 50% no-repeat;
-    left: 50%;
-    top: 50%;
-}
-
-.ui-btn-icon-notext.ui-corner-all {
-    border-radius: 20em;
-}
-
-.ui-btn {
-    border-width: 0px;
-    border-style: none;
-}
-
-.mybackground {
 }
 
 #abouttitle {

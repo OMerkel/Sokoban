@@ -1,6 +1,6 @@
 #!/usr/bin/env dart
 
-// Copyright (c) 2019, Oliver Merkel.
+// Copyright (c) 2019-2026, Oliver Merkel.
 // Please see the AUTHORS file for details.
 // All rights reserved.
 //

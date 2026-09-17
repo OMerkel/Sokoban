@@ -1,10 +1,20 @@
 {
   "name": "io.github.omerkel.sokoban",
   "displayName": "Sokoban",
-  "version": "0.1",
+  "version": "0.2.0",
   "description": "倉庫番 - Sokoban solitaire puzzle game",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "http-server src -p 4173 -s",
+    "test": "npm run test:unit && npm run test:e2e",
+    "test:unit": "vitest run --coverage",
+    "test:unit:watch": "vitest",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "lint": "npm run lint:md && npm run lint:biome",
+    "lint:md": "markdownlint-cli2",
+    "lint:biome": "biome check src",
+    "format": "biome format --write src"
   },
   "author": "Oliver Merkel",
   "license": "parts MIT / parts Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License / see LICENSE file for details",
@@ -15,6 +25,13 @@
     ]
   },
   "devDependencies": {
-    "cordova-android": "^12.0.0"
+    "@biomejs/biome": "^2.5.14",
+    "@playwright/test": "^1.63.0",
+    "@vitest/coverage-v8": "^5.0.1",
+    "cordova-android": "^12.0.0",
+    "http-server": "^14.1.1",
+    "jsdom": "^26.1.0",
+    "markdownlint-cli2": "^0.23.2",
+    "vitest": "^5.0.1"
   }
 }

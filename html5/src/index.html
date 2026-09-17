@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang='en'>
 <head profile='http://dublincore.org/documents/dcq-html/'>
   <link rel='icon' href='img/icons/favicon.ico' type='image/x-icon' />
   <link rel='schema.DC' href='http://purl.org/dc/elements/1.1/' />
@@ -13,7 +13,7 @@
   <meta name='DC.rights' content="
 See file named LICENSE being part of the repository.
 
-Copyright (c) 2019
+Copyright (c) 2019-2026
 @author Oliver Merkel, Merkel(dot)Oliver(at)web(dot)de.
 All rights reserved.
 
@@ -23,7 +23,7 @@ All source code also including code parts written in HMTL, Javascript, CSS is un
 
 The MIT License (MIT)
 
-Copyright (c) 2019 Oliver Merkel, Merkel(dot)Oliver(at)web(dot)de
+Copyright (c) 2019-2026 Oliver Merkel, Merkel(dot)Oliver(at)web(dot)de
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the &quot;Software&quot;), to deal in
@@ -52,88 +52,78 @@ If not otherwise stated all graphics (independent of its format) are licensed un
   <link rel='apple-touch-icon' href='img/icons/sokoban128.png' />
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'
     name='viewport' />
-  <link rel='stylesheet' type='text/css' href='thirdparty/jquery.mobile-1.4.5/jquery.mobile-1.4.5.css' />
   <link rel='stylesheet' type='text/css' href='css/index.css' />
-  <script src='thirdparty/jquery-2.2.4.js' type='text/javascript'></script>
-  <script src='thirdparty/jquery.mobile-1.4.5/jquery.mobile-1.4.5.js' type='text/javascript'></script>
-  <script src='thirdparty/raphael-2.2.0/raphael.js' type='text/javascript'></script>
-  <script src='js/levels.js' type='text/javascript'></script>
-  <script src='js/hmi.js' type='text/javascript' defer></script>
+  <script src='js/main.js' type='module'></script>
 </head>
 <body>
-<div data-role='page' data-theme='b' id='game-page' class='mybackground'>
-  <div data-role='header' data-position='fixed'>
+<div class='page' id='game-page'>
+  <header class='app-header'>
+    <button type='button' id='customMenu' class='customMenu icon-btn' aria-label='Open menu'>Menu</button>
     <center id='myheader'>Sokoban</center>
-    <a href='#left-panel' id='customMenu' class='customMenu'
-      data-icon='custom' data-iconpos='notext'>Menu</a>
-  </div><!-- /header -->
-  <div role='main' class='mycontent ui-content'>
+  </header>
+  <main class='mycontent'>
     <noscript>
       <p>This HTML5 application depends on enabled Javascript capabilities in your browser.</p>
       <p>Please consider enabling Javascript if disabled through settings.</p>
     </noscript>
     <center><div id='board'></div></center>
-  </div><!-- /content -->
-  <div data-role='panel' id='left-panel' data-position='left'
-    data-display='overlay' data-theme='b'>
-    <ul data-role='listview' data-theme='b' data-divider-theme='d'
-      data-icon='false' data-global-nav='demos' class='jqm-list'>
-      <li data-icon='carat-l' data-rel='close'><a href='#'>Close Menu</a></li>
-      <li data-role='list-divider'>&nbsp;</li>
-      <li data-icon='refresh'><a id='restart'>Restart</a></li>
-      <li data-role='list-divider'>&nbsp;</li>
-      <li data-icon='action'><a id='next'>Next</a></li>
-      <li data-icon='action'><a id='previous'>Previous</a></li>
-      <li data-icon='action'><a id='random'>Random</a></li>
-      <li data-role='list-divider'>&nbsp;</li>
-      <li data-icon='back'><a id='undo'>Undo</a></li>
-      <li data-role='list-divider'>&nbsp;</li>
-      <li data-icon='info'><a href='#rules-page' data-rel='page'
-        data-transition='pop'>Rules&#8230;</a></li>
-      <li data-icon='grid'><a href='#statistics-menu' data-rel='page'
-        data-transition='slideup'>Statistics&#8230;</a></li>
-      <li data-icon='gear'><a href='#options-menu' data-rel='page'
-        data-transition='slideup'>Options&#8230;</a></li>
-      <li data-icon='info' ><a href='#about-page' data-rel='page'
-        data-transition='pop'>About&#8230;</a></li>
+  </main>
+  <nav id='left-panel' class='panel'>
+    <ul class='jqm-list'>
+      <li><a href='#' data-rel='back'>Close Menu</a></li>
+      <li class='list-divider'>&nbsp;</li>
+      <li><a id='restart'>Restart</a></li>
+      <li class='list-divider'>&nbsp;</li>
+      <li><a id='next'>Next</a></li>
+      <li><a id='previous'>Previous</a></li>
+      <li><a id='random'>Random</a></li>
+      <li class='list-divider'>&nbsp;</li>
+      <li><a id='undo'>Undo</a></li>
+      <li class='list-divider'>&nbsp;</li>
+      <li><a href='#rules-page'>Rules&#8230;</a></li>
+      <li><a href='#statistics-menu'>Statistics&#8230;</a></li>
+      <li><a href='#options-menu'>Options&#8230;</a></li>
+      <li><a href='#about-page'>About&#8230;</a></li>
     </ul>
-  </div><!-- /panel -->
+  </nav>
 </div><!-- /page -->
-<div data-role='page' data-theme='b' id='rules-page'>
-  <div data-role='header'>
-    <a href='#' data-rel='back' id='customBackRules'
-      class='customBack ui-btn ui-icon-custom ui-btn-icon-right ui-btn-icon-notext ui-corner-all'>Back</a>
+<div class='page' id='rules-page' hidden>
+  <header class='app-header'>
+    <a href='#' data-rel='back' id='customBackRules' class='customBack icon-btn'>Back</a>
     <h4>Rules</h4>
-  </div><!-- /header -->
-  <div role='main' class='ui-content'>
+  </header>
+  <main class='mycontent'>
     <br />
     <p>Sokoban is a soltaire puzzle game.</p>
     <br clear='all' />
     <h2>Winning Condition</h2>
     <p>Solve the challenge by pushing all the boxes onto the marked storage locations.</p>
     <br clear='all' />
+    <h2>Controls</h2>
+    <p>Move the warehouse keeper with the on-screen joystick, the
+      <b>WASD</b> keys, or the arrow keys.</p>
+    <br clear='all' />
     <p>Have fun and enjoy the game&#8230;</p>
-    <a href='#' data-role='button' data-icon='back'
-      data-rel='back'>Back</a>
-  </div><!-- /content -->
+    <a href='#' data-rel='back' class='ui-btn'>Back</a>
+  </main>
 </div><!-- /page -->
 
-<div data-role='page' data-theme='b' id='options-menu'>
-  <div data-role='header'>
+<div class='page' id='options-menu' hidden>
+  <header class='app-header'>
     <h1><small>Options</small></h1>
-    <a href='#' data-rel='back' id='customBackOptions'
-      class='customBack ui-btn ui-icon-custom ui-btn-icon-left ui-btn-icon-notext ui-corner-all'>Close</a>
-  </div><!-- /header -->
-  <div data-role='content'>
+    <a href='#' data-rel='back' id='customBackOptions' class='customBack icon-btn'>Close</a>
+  </header>
+  <main class='mycontent'>
     <br />
     <form>
-      <fieldset data-role='controlgroup'>
+      <fieldset>
         <legend>Level information</legend>
         <input name='statusinfo' id='fullinfo'
           type='radio' checked='checked' />
         <label for='fullinfo'>
           Show full information
         </label>
+        <br />
         <input name='statusinfo' id='supresshints'
           type='radio' />
         <label for='supresshints'>
@@ -142,13 +132,14 @@ If not otherwise stated all graphics (independent of its format) are licensed un
       </fieldset>
     </form>
     <form>
-      <fieldset data-role='controlgroup'>
+      <fieldset>
         <legend>Display controlled character as...</legend>
         <input name='controlcharacter' id='warehousekeeper'
           type='radio' checked='checked' />
         <label for='warehousekeeper'>
           warehouse keeper
         </label>
+        <br />
         <input name='controlcharacter' id='redcircle'
           type='radio' />
         <label for='redcircle'>
@@ -156,18 +147,16 @@ If not otherwise stated all graphics (independent of its format) are licensed un
         </label>
       </fieldset>
     </form>
-    <a href='#' id='customOkOptions' data-role='button' data-icon='check'
-      data-rel='back' data-theme='c'>Ok</a>
-  </div><!-- /content -->
+    <a href='#' id='customOkOptions' data-rel='back' class='ui-btn'>Ok</a>
+  </main>
 </div><!-- /page -->
 
-<div data-role='page' data-theme='b' id='statistics-menu'>
-  <div data-role='header'>
+<div class='page' id='statistics-menu' hidden>
+  <header class='app-header'>
     <h1><small>Statistics</small></h1>
-    <a href='#' data-rel='back' id='customBackStatistics'
-      class='customBack ui-btn ui-icon-custom ui-btn-icon-left ui-btn-icon-notext ui-corner-all'>Close</a>
-  </div><!-- /header -->
-  <div data-role='content'>
+    <a href='#' data-rel='back' id='customBackStatistics' class='customBack icon-btn'>Close</a>
+  </header>
+  <main class='mycontent'>
     <br />
     <h3>Level Data</h3>
     <p id='leveldata'></p>
@@ -175,33 +164,31 @@ If not otherwise stated all graphics (independent of its format) are licensed un
     <p id='history' style='word-wrap: break-word;'></p>
     <p>#<span id='moves'></span> moves made and boxes were pushed #<span id='pushes'></span> times.</p>
     <p id='completed'></p>
-    <a href='#' id='customOkStatistics' data-role='button' data-icon='check'
-      data-rel='back' data-theme='c'>Ok</a>
-  </div><!-- /content -->
+    <a href='#' id='customOkStatistics' data-rel='back' class='ui-btn'>Ok</a>
+  </main>
 </div><!-- /page -->
 
-<div data-role='page' data-theme='b' id='about-page'>
-  <div data-role='header'>
-    <a href='#' data-rel='back' id='customBackAbout'
-      class='customBack ui-btn ui-icon-custom ui-btn-icon-right ui-btn-icon-notext ui-corner-all'>Back</a>
+<div class='page' id='about-page' hidden>
+  <header class='app-header'>
+    <a href='#' data-rel='back' id='customBackAbout' class='customBack icon-btn'>Back</a>
     <h4>About Sokoban</h4>
-  </div><!-- /header -->
-  <div role='main' class='ui-content'>
+  </header>
+  <main class='mycontent'>
     <figure class='author' style='float: right;'>
-      <img src='img/oliver.jpg' />
+      <img src='img/oliver.jpg' alt='Portrait of Oliver Merkel' />
       <figcaption>Oliver Merkel, <a rel='license'
         href='http://creativecommons.org/licenses/by-nc-nd/4.0'
         target='_blank'>cc-by-nc-nd 4.0</a>.</figcaption>
     </figure>
     <br />
     <h3>Legal</h3>
-    <p>Copyright (c) 2019<br />
+    <p>Copyright (c) 2019-2026<br />
     <b>@author</b> <em>Oliver Merkel</em>, Merkel(dot) Oliver(at) web(dot) de.<br />
     All rights reserved.<br />
     Logos, brands, and trademarks belong to their respective owners.</p>
     <p>All source code also including code parts written in HMTL, Javascript, CSS is under MIT License.</p>
     <h4>The MIT License (MIT)</h4>
-    <p>Copyright (c) 2019 Oliver Merkel, Merkel(dot) Oliver(at) web(dot)de</p>
+    <p>Copyright (c) 2019-2026 Oliver Merkel, Merkel(dot) Oliver(at) web(dot)de</p>
 
     <p>Permission is hereby granted, free of charge, to any person obtaining a copy of
     this software and associated documentation files (the &quot;Software&quot;), to deal in
@@ -229,10 +216,9 @@ If not otherwise stated all graphics (independent of its format) are licensed un
       International License</a>.
     </p>
 
-    <div data-role='collapsible-set' data-theme='c' data-content-theme='d'
-      data-iconpos='right' data-collapsed-icon='arrow-l' data-expanded-icon='arrow-d'>
-    <div data-role='collapsible'>
-      <h4>Sokoban Principles and Concepts</h4>
+    <div class='collapsible-set'>
+    <details>
+      <summary>Sokoban Principles and Concepts</summary>
       <p><em>Sokoban</em> implements a solitaire puzzle game.</p>
       <p>This is a free implementation of the Sokoban solitaire puzzle game.
         The term Sokoban means warehouse keeper. The player controls a
@@ -240,37 +226,10 @@ If not otherwise stated all graphics (independent of its format) are licensed un
         to solve each level.</p>
       <p>The original game of Sokoban was created back in the early 1980s
         Home Computer era by Hiroyuki Imabayashi.</p>
-    </div><!-- collapsible -->
-    <div data-role='collapsible'>
-      <h4>Third Party Code Licenses</h4>
-      <p>This <b>Sokoban</b> implementation uses unmodified
-      independent code libraries provided by <em>third parties</em>.
-      Since their licenses might vary the corresponding information is
-      <em>externally linked</em> below. Thus <em>these external links</em>
-      will enable you to reproduce any copyright notice,
-      any related list of conditions, disclaimers, and especially
-      the copyright holders and authors of the corresponding third
-      party functionality.</p>
-      <a href='https://github.com/jquery/jquery' data-role='button' data-theme='c'
-        rel='external' target='_blank' type='text/html'
-        title='jQuery - Repository'>
-        <img src='thirdparty/jquery-favicon.ico' width='16' height='16' />
-        jQuery: MIT</a>
-      <a href='https://github.com/jquery/jquery-mobile' data-role='button' data-theme='c'
-        rel='external' target='_blank' type='text/html'
-        title='jQuery Mobile - Repository'>
-        <img src='thirdparty/jquery.mobile-1.4.5/demos/favicon.ico' width='16' height='16' />
-        jQuery Mobile: MIT</a>
-      <a href='https://github.com/DmitryBaranovskiy/raphael' data-role='button' data-theme='c'
-        rel='external' target='_blank' type='text/html'
-        title='Raphaël - Repository'>
-        <img src='thirdparty/raphael-2.2.0/raphael_logo.png' width='16' height='16' />
-        Raphaël: MIT</a>
-    </div><!-- collapsible -->
+    </details>
     </div><!-- collapsible-set -->
-    <a href='#' data-role='button' data-icon='back'
-      data-rel='back'>Back</a>
-  </div><!-- /content -->
+    <a href='#' data-rel='back' class='ui-btn'>Back</a>
+  </main>
 </div><!-- /page -->
 </body>
 </html>

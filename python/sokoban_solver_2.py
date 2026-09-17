@@ -2,7 +2,7 @@
 # -*-coding:utf-8-*-
 
 '''
-// Copyright (c) 2019, Oliver Merkel.
+// Copyright (c) 2019-2026, Oliver Merkel.
 // Please see the AUTHORS file for details.
 // All rights reserved.
 //
@@ -10,130 +10,26 @@
 // MIT license that can be found in the LICENSE file.
 '''
 
-from collections import deque
-import time
-import sys
-from levels import *
+from typing import Any, Set
 
-class Sokoban:
+from sokoban_base import SokobanBase, run
 
-  orientation = {
-    'down':  { 'move': 'd', 'push': 'D', 'dx':  0, 'dy':  1 },
-    'left':  { 'move': 'l', 'push': 'L', 'dx': -1, 'dy':  0 },
-    'up':    { 'move': 'u', 'push': 'U', 'dx':  0, 'dy': -1 },
-    'right': { 'move': 'r', 'push': 'R', 'dx':  1, 'dy':  0 }
-  }
 
-  def __init__(self, level):
-    '''
-    level: list of strings containing the Sokoban level
-    '''
-    self.level = []
-    for r in level:
-      self.level.append(r)
+class Sokoban(SokobanBase):
+    """Breadth-first solver with a visited-state cache."""
 
-  def getLevel(self):
-    level = []
-    for r in self.level:
-      level.append(r)
-    return level
+    def initial_visited(self) -> Set[Any]:
+        """Seed the visited cache with the starting level state."""
+        return {''.join(self.get_level())}
 
-  def getSokoban(self):
-    '''
-    returns the position of the warehouse keeper as ( x, y )
-    '''
-    result = None
-    for y,r in enumerate(self.level):
-      for x,c in enumerate(r):
-        if c == levels['symbol']['sokoban'] or c == levels['symbol']['sokobanOnStorage']:
-          result = ( x, y )
-          break
-      if result:
-        break
-    return result
+    def visit(self, solver: SokobanBase, visited: Set[Any]) -> bool:
+        """Expand solver's state only the first time it is seen."""
+        joined = ''.join(solver.get_level())
+        if joined in visited:
+            return False
+        visited.add(joined)
+        return True
 
-  def canPush(self, o):
-    result = False
-    ( x, y ) = self.getSokoban()
-    target = { 'sokoban': ( x + self.orientation[o]['dx'], y + self.orientation[o]['dy'] ),
-      'box' : ( x + 2*self.orientation[o]['dx'], y + 2*self.orientation[o]['dy'] ) }
-    neighbor = self.level[ target['sokoban'][1] ][ target['sokoban'][0] ]
-    if neighbor == levels['symbol']['box'] or neighbor == levels['symbol']['boxOnStorage']:
-      behindNeighbor = self.level[ target['box'][1] ][ target['box'][0] ]
-      result = behindNeighbor == levels['symbol']['floor'] or behindNeighbor == levels['symbol']['storage']
-    return result
-
-  def push(self, o):
-    ( x, y ) = self.getSokoban()
-    target = { 'sokoban': ( x + self.orientation[o]['dx'], y + self.orientation[o]['dy'] ),
-      'box' : ( x + 2*self.orientation[o]['dx'], y + 2*self.orientation[o]['dy'] ) }
-    self.level[ y ] = self.level[ y ][:x] + (levels['symbol']['floor'] if self.level[ y ][ x ] == levels['symbol']['sokoban'] else levels['symbol']['storage']) + self.level[ y ][x+1:]
-    ( x, y ) = target['sokoban']
-    self.level[ y ] = self.level[ y ][:x] + (levels['symbol']['sokoban'] if self.level[ y ][ x ] == levels['symbol']['box'] else levels['symbol']['sokobanOnStorage']) + self.level[ y ][x+1:]
-    ( x, y ) = target['box']
-    self.level[ y ] = self.level[ y ][:x] + (levels['symbol']['box'] if self.level[ y ][ x ] == levels['symbol']['floor'] else levels['symbol']['boxOnStorage']) + self.level[ y ][x+1:]
-
-  def canMove(self, o):
-    ( x, y ) = self.getSokoban()
-    target = ( x + self.orientation[o]['dx'], y + self.orientation[o]['dy'] )
-    neighbor = self.level[ target[1] ][ target[0] ]
-    return neighbor == levels['symbol']['floor'] or neighbor == levels['symbol']['storage']
-
-  def move(self, o):
-    ( x, y ) = self.getSokoban()
-    target = ( x + self.orientation[o]['dx'], y + self.orientation[o]['dy'] )
-    self.level[ y ] = self.level[ y ][:x] + (levels['symbol']['floor'] if self.level[ y ][ x ] == levels['symbol']['sokoban'] else levels['symbol']['storage']) + self.level[ y ][x+1:]
-    ( x, y ) = target
-    self.level[ y ] = self.level[ y ][:x] + (levels['symbol']['sokoban'] if self.level[ y ][ x ] == levels['symbol']['floor'] else levels['symbol']['sokobanOnStorage']) + self.level[ y ][x+1:]
-
-  def isSolved(self):
-    '''
-    returns True if level is solved
-    '''
-    result = True
-    for r in self.level:
-      for c in r:
-        if c == levels['symbol']['storage'] or \
-           c == levels['symbol']['box'] or \
-           c == levels['symbol']['sokobanOnStorage']:
-          result = False
-          break
-      if not result:
-        break
-    return result
-
-  def solve(self):
-    path = ''
-    toBeAnalyzed = deque([[self.getLevel(), path]])
-    visited = set([''.join(self.getLevel())])
-    while toBeAnalyzed:
-      level, path = toBeAnalyzed.popleft()
-      for o in self.orientation:
-        # print(o)
-        s = Sokoban(level)
-        if s.canPush(o):
-          s.push(o)
-          sj = ''.join(s.getLevel())
-          if sj not in visited:
-            if s.isSolved():
-              return path + self.orientation[o]['push']
-            toBeAnalyzed.append([s.getLevel(), path + self.orientation[o]['push']])
-            visited.add(sj)
-        elif s.canMove(o):
-          s.move(o)
-          sj = ''.join(s.getLevel())
-          if sj not in visited:
-            toBeAnalyzed.append([s.getLevel(), path + self.orientation[o]['move']])
-            visited.add(sj)
-    return None
 
 if __name__ == '__main__':
-  levelsTotal = len(levels['setup'])
-  level = levels['setup'][int(sys.argv[1])]
-  start = time.time()
-  s = Sokoban(level['plan'])
-  print('\n'.join(s.level))
-  print(level['info'])
-  print(s.solve())
-  end = time.time()
-  print(end - start, 'seconds')
+    run(Sokoban)

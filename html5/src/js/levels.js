@@ -5,7 +5,7 @@
  *
  * @section LICENSE
  *
- * Copyright 2019, Oliver Merkel <Merkel(dot)Oliver(at)web(dot)de>
+ * Copyright 2019-2026, Oliver Merkel <Merkel(dot)Oliver(at)web(dot)de>
  * All rights reserved.
  *
  * Released under the MIT license.
@@ -24,7 +24,7 @@
  *
  */
 
-levels = {
+export const levels = {
   symbol : {
     floor:            " ",
     wall:             "#",
@@ -9942,7 +9942,6 @@ levels = {
     "  #########################",
     ],
     info: "by David W. Skinner, Sasquatch III 49",
-  }, {
   }, {
     plan: [
     " ####                   ####",
